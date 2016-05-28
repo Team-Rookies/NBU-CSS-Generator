@@ -16,7 +16,7 @@ $(document).ready(function () {
     $('.close').on('click', function () {
         $(".modal-backdrop").css('display', 'none');
         $("#modal-container").css('display', 'none');
-        $("#preview").css('display','none');
+        $("#preview").css('display', 'none');
         flag = false;
     });
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 flag = false;
                 break;
             case 'text-shadow':
-                console.log("text-shadow");
+                textShadow();
                 flag = false;
                 break;
             case 'rgba':
@@ -106,7 +106,7 @@ $(document).ready(function () {
             $('#txtarea').append(newline);
             $('#txtarea').append(partTwo);
             $("#preview").css('display', 'block');
-            $("#preview").css('border-radius',$(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px");
+            $("#preview").css('border-radius', $(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px");
         })
     }
     function createBoxShadow() {
@@ -130,7 +130,7 @@ $(document).ready(function () {
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
         $('.hex-color').hexColorPicker();
-        $('#txtarea').css('bottom','-28px');
+        $('#txtarea').css('bottom', '-28px');
         $(".generate").click(function () {
             $('#txtarea').empty();
             var inset = $('.inset').val();
@@ -140,18 +140,42 @@ $(document).ready(function () {
 
             var newline = String.fromCharCode(13, 10);
             var partOne = "-webkit-box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val() + ";";
-            var partTwo = "box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px "+ $(".hex-color").val() + ";";
+            var partTwo = "box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val() + ";";
             $('#txtarea').append(partOne);
             $('#txtarea').append(newline);
             $('#txtarea').append(partTwo);
-            
+
             $("#preview").css('display', 'block');
-            $("#preview").css('box-shadow',appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val());
+            $("#preview").css('box-shadow', appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val());
         })
-        
-            
     }
     function textShadow() {
+        $(".modal-backdrop").css('display', 'block');
+        $("#modal-container").css('display', 'block');
+        var horizontalLength = "Horizontal Length &nbsp;<input class='horizontal-length' type='number'></input><label>&nbsp; px</label></br>";
+        var verticalLength = "Vertical Length &nbsp;<input class='vertical-length' type='number'></input><label>&nbsp; px</label></br>";
+        var blurRadius = "Blur Radius &nbsp;<input class='blur-radius' type='number'></input><label>&nbsp; px</label></br>";
+        var hexColor = "Hex Color &nbsp;<input class='hex-color' type='text'></input>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        $(".modelContentBody").empty();
+        $(".modelContentBody").append(horizontalLength);
+        $(".modelContentBody").append(verticalLength);
+        $(".modelContentBody").append(blurRadius);
+        $(".modelContentBody").append(hexColor);
+        $(".modelContentBody").append(txtArea);
+        $(".modelContentBody").append(generateButton);
+        $('.hex-color').hexColorPicker();
+        $('#txtarea').css('bottom', '-28px');
+        $(".generate").click(function () {
+            $('#txtarea').empty();
+            var newline = String.fromCharCode(13, 10);
+            var partOne = "text-shadow: " + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".hex-color").val() + ";";
+            $('#txtarea').append(partOne);
+            $("#preview").css('display', 'block');
+            $("#preview").css('text-shadow',$(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".hex-color").val());
+        })
+
 
 
     }
