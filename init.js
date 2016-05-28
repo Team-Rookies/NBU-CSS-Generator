@@ -115,8 +115,8 @@ $(document).ready(function () {
         var blurRadius = "Blur Radius &nbsp;<input class='blur-radius' type='number'></input><label>&nbsp; px</label></br>";
         var spread = "Spread &nbsp;<input class='spread' type='number'></input><label>&nbsp; px</label></br>";
         var hexColor = "Hec Color &nbsp;<input class='hex-color' type='text'></input>";
-        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>"
-        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>"
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
         $(".modelContentBody").empty();
         $(".modelContentBody").append(inset);
         $(".modelContentBody").append(horizontalLength);
@@ -126,6 +126,7 @@ $(document).ready(function () {
         $(".modelContentBody").append(hexColor);
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
+        $(".modelContentBody").append(viewButton);
 
         $(".generate").click(function () {
             $('#txtarea').empty();
@@ -141,6 +142,7 @@ $(document).ready(function () {
             $('#txtarea').append(newline);
             $('#txtarea').append(partTwo);
         })
+        
     }
     function textShadow() {
 
