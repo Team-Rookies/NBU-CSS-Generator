@@ -25,11 +25,28 @@
   box-shadow:0 5px 15px rgba(0,0,0,.5);
   top:50%;
   margin-top:-350px; 
-  left:50%; margin-left:-300px;
+  left:50%;
+  margin-left:-300px;
   background-color:white;
   border-radius:5px; 
   display:none;  
 }
+
+#preview{
+ position: absolute;
+ width: 200px;
+ height: 200px;
+ top: 71%;
+ margin-top: -350px;
+ left: 56%;
+ border-color: red;
+ background-color: white;
+ z-index: 9999999;
+ border: solid;
+ text-align: center;
+ display:none;
+}
+  
 
 #txtarea{
   position: absolute;

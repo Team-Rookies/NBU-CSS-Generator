@@ -16,6 +16,7 @@ $(document).ready(function () {
     $('.close').on('click', function () {
         $(".modal-backdrop").css('display', 'none');
         $("#modal-container").css('display', 'none');
+        $("#preview").css('display','none');
         flag = false;
     });
 
@@ -100,10 +101,12 @@ $(document).ready(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
             var partOne = "-webkit-border-radius:" + $(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px;";
-            var partTwo = "border-radius:" + $(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px;";
+            var partTwo = "border-radius:" + $('.topLeft').val() + 'px ' + $('.topRight').val() + 'px ' + $('.bottomLeft').val() + 'px ' + $('.bottomRight').val() + 'px;';
             $('#txtarea').append(partOne);
             $('#txtarea').append(newline);
             $('#txtarea').append(partTwo);
+            $("#preview").css('display', 'block');
+            $("#preview").css('border-radius',$(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px");
         })
     }
     function createBoxShadow() {
@@ -114,7 +117,7 @@ $(document).ready(function () {
         var verticalLength = "Vertical Length &nbsp;<input class='vertical-length' type='number'></input><label>&nbsp; px</label></br>";
         var blurRadius = "Blur Radius &nbsp;<input class='blur-radius' type='number'></input><label>&nbsp; px</label></br>";
         var spread = "Spread &nbsp;<input class='spread' type='number'></input><label>&nbsp; px</label></br>";
-        var hexColor = "Hec Color &nbsp;<input class='hex-color' type='text'></input>";
+        var hexColor = "Hex Color &nbsp;<input class='hex-color' type='text'></input>";
         var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
         $(".modelContentBody").empty();
@@ -126,8 +129,7 @@ $(document).ready(function () {
         $(".modelContentBody").append(hexColor);
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
-        $(".modelContentBody").append(viewButton);
-
+        $('.hex-color').hexColorPicker();
         $(".generate").click(function () {
             $('#txtarea').empty();
             var inset = $('.inset').val();
@@ -136,13 +138,17 @@ $(document).ready(function () {
 
 
             var newline = String.fromCharCode(13, 10);
-            var partOne = "-webkit-box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + "#" + $(".hex-color").val() + ";";
-            var partTwo = "box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + "#" + $(".hex-color").val() + ";";
+            var partOne = "-webkit-box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val() + ";";
+            var partTwo = "box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px "+ $(".hex-color").val() + ";";
             $('#txtarea').append(partOne);
             $('#txtarea').append(newline);
             $('#txtarea').append(partTwo);
+            
+            $("#preview").css('display', 'block');
+            $("#preview").css('box-shadow',appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val());
         })
         
+            
     }
     function textShadow() {
 
