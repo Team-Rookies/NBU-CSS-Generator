@@ -130,6 +130,7 @@ $(document).ready(function () {
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
         $('.hex-color').hexColorPicker();
+        $('#txtarea').css('bottom','-28px');
         $(".generate").click(function () {
             $('#txtarea').empty();
             var inset = $('.inset').val();
