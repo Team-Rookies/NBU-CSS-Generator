@@ -17,7 +17,7 @@ $(document).ready(function () {
         $(".modal-backdrop").css('display', 'none');
         $("#modal-container").css('display', 'none');
         $("#preview").css('display', 'none');
-        $( "body" ).removeClass( "dialogIsOpen" );
+        $("body").removeClass("dialogIsOpen");
         flag = false;
     });
     $(document).mouseup(function (e) {
@@ -26,7 +26,8 @@ $(document).ready(function () {
             && container.has(e.target).length === 0) // ... nor a descendant of the container
         {
             container.hide();
-            $( "body" ).removeClass( "dialogIsOpen" );
+            $("#preview").css('display', 'none');
+            $("body").removeClass("dialogIsOpen");
         }
     });
 
@@ -59,7 +60,7 @@ $(document).ready(function () {
                 flag = false;
                 break;
             case 'box-resize':
-                console.log("box-resize");
+                boxResize();
                 flag = false;
                 break;
             case 'box-resizing':
@@ -89,7 +90,6 @@ $(document).ready(function () {
         }
 
     }
-
     function createRadius() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
@@ -98,8 +98,8 @@ $(document).ready(function () {
         var topRight = "Top Right &nbsp;<input class='topRight' type='number'></input><label>&nbsp; px</label></br>";
         var bottomLeft = "Bottom Left &nbsp;<input class='bottomLeft' type='number'></input><label>&nbsp; px</label></br>";
         var bottomRight = "Bottom Right &nbsp;<input class='bottomRight' type='number'></input><label>&nbsp; px</label></br>";
-        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>"
-        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>"
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
         $('.modal-head-h3').append(modalHead);
@@ -149,7 +149,7 @@ $(document).ready(function () {
         $('.hex-color').hexColorPicker();
         $('#txtarea').css('bottom', '-28px');
         $("body").toggleClass("dialogIsOpen");
-        
+
         $(".generate").click(function () {
             $('#txtarea').empty();
             var inset = $('.inset').val();
@@ -190,7 +190,7 @@ $(document).ready(function () {
         $('.hex-color').hexColorPicker();
         $('#txtarea').css('bottom', '-28px');
         $("body").toggleClass("dialogIsOpen");
-        
+
         $(".generate").click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
@@ -224,7 +224,7 @@ $(document).ready(function () {
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
         $("body").toggleClass("dialogIsOpen");
-        
+
         $(".generate").click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
@@ -316,32 +316,36 @@ $(document).ready(function () {
         $('.modal-backdrop').css('display', 'block');
         $('#modal-container').css('display', 'block');
         var modalHead = "Generate Box Resize CSS";
-        var fontFace = "<label>Font Face</label>&nbsp;<input class='fontFamily' type='text'></input></br>";
-        var fontName = "<label>Font Face</label>&nbsp;<input class='fontName' type='text'></input></br>";
-        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        var resizeType = "<b>Box Resize Type: </b><select class='resizeType' name='type'><option value='none'>NONE</option><option value='horizontal'>Horizontal</option><option value='vertical'>Vertical</option> <option value='both'>Both</option> </select></br>";
+        var minWidth = "<b>Min-Width: </b> <input class='minWidth' type='number'></input></br>";
+        var minHeight = "<b>Min-Height: </b> <input class='minHeight' type='number'></input></br>";
         var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
         $('.modal-head-h3').append(modalHead);
-        $('.modelContentBody').append(fontFace);
-        $('.modelContentBody').append(fontName);
-        $(".modelContentBody").append(txtArea);
+        $('.modelContentBody').append(resizeType);
+        $('.modelContentBody').append(minWidth);
+        $(".modelContentBody").append(minHeight);
         $(".modelContentBody").append(generateButton);
+        $(".modelContentBody").append(txtArea);
         $("body").toggleClass("dialogIsOpen");
 
         $('.generate').click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
-            var firstLine = "@font-face {" + newline;
-            var secondLine = "&#9;font-family: &quot;" + $('.fontFamily').val() + "&quot; ;" + newline;
-            var thridLine = '&#9;src: url("' + $('.fontName').val() + '.eot") format("eot"),' + newline;
-            var fourth = '&#9;url("' + $('.fontName').val() + '.woff") format("woff"),' + newline;
-            var fifth = '&#9;url("' + $('.fontName').val() + '.ttf") format("truetype"),' + newline + "}";
+            var firstLine = "resize: " + $('.resizeType').val() + ";" + newline;
+            var secondLine = "overflow: auto;" + newline;
+            var thridLine = 'min-width: ' + $('.minWidth').val() + 'px;' + newline;
+            var fourth = 'min-height: ' + $('.minHeight').val() + 'px;' + newline;
             $('#txtarea').append(firstLine);
             $('#txtarea').append(secondLine);
             $('#txtarea').append(thridLine);
             $('#txtarea').append(fourth);
-            $('#txtarea').append(fifth);
+            $("#preview").css('display', 'block');
+            $("#preview").css('resize', $(".resizeType").val());
+            $("#preview").css('width', $('.minWidth').val() + 'px');
+            $("#preview").css('height', $('.minHeight').val() + 'px');
         })
 
     }
