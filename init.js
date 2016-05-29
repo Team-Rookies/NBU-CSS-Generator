@@ -37,7 +37,7 @@ $(document).ready(function () {
                 flag = false;
                 break;
             case 'rgba':
-                console.log("RGBA");
+                rgba();
                 flag = false;
                 break;
             case 'font-face':
@@ -181,10 +181,36 @@ $(document).ready(function () {
     }
 
     function rgba() {
-
-
+        $(".modal-backdrop").css('display', 'block');
+        $("#modal-container").css('display', 'block');
+        var r = "<b>R</b> &nbsp;<input class='r' type='number'></input></br>";
+        var g = "<b>G</b> &nbsp;<input class='g' type='number'></input></br>";
+        var b = "<b>B</b> &nbsp;<input class='b' type='number'></input></br>";
+        var opacity = "Opacity &nbsp;<input class='opacity' type='number'></input></br>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        $(".modelContentBody").empty();
+        $(".modelContentBody").append(r);
+        $(".modelContentBody").append(g);
+        $(".modelContentBody").append(b);
+        $(".modelContentBody").append(opacity);
+        $(".modelContentBody").append(txtArea);
+        $(".modelContentBody").append(generateButton);
+        $('.hex-color').hexColorPicker();
+        $('#txtarea').css('bottom', '-28px');
+        $(".generate").click(function () {
+            $('#txtarea').empty();
+            var newline = String.fromCharCode(13, 10);
+            var partOne = "background-color: rgba(" + $(".r").val() + ", " + $(".g").val() + ", " + $(".b").val() + ", " + $(".opacity").val() +");";
+            var partTwo = "color: rgba(" + $(".r").val() + ", " + $(".g").val() + ", " + $(".b").val() + ", " + $('.opacity').val() +");";
+            $('#txtarea').append(partOne);
+            $('#txtarea').append(newline);
+            $('#txtarea').append(partTwo);
+            $("#preview").css('display', 'block');
+            $("#preview").css('text-decoration','bold');
+            $("#preview").css('background-color','rgba(' + $('.r').val() + ', ' + $('.g').val() + ', ' + $('.b').val() + ', ' + $('.opacity').val() +')');
+        })
     }
-
     function fontFace() {
 
 
