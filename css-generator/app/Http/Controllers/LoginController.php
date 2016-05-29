@@ -27,7 +27,7 @@ class LoginController extends Controller
         ];
 
         if(Auth::attempt($creds)) {
-            return Redirect::intended('users');
+            return Redirect::intended('styles');
         } else {
             return Redirect::to('login')
                 ->withInput();
