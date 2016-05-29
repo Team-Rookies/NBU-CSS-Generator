@@ -45,7 +45,7 @@ $(document).ready(function () {
                 flag = false;
                 break;
             case 'multiple-columns':
-                console.log("multiple-columns");
+                multipleColumns()
                 flag = false;
                 break;
             case 'box-resize':
@@ -254,7 +254,42 @@ $(document).ready(function () {
     }
 
     function multipleColumns() {
+        $('.modal-backdrop').css('display', 'block');
+        $('#modal-container').css('display', 'block');
+        var modalHead="Generate Multiple Columns CSS";
+        var numbColumns = "<label># of columns</label>&nbsp;<input class='numbColumns' type='text'></input></br>";
+        var gap = "<label>Column Gap</label>&nbsp;<input class='gap' type='text'></input></br>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        var textPreview = "<hr><p class='textPreview'>All of you who are under the impression that cats are absolutely the best thing for the Internet—producing GIFs and memes galore—are bloody delusional. My 8lb house cat Franny almost destroyed a small section of your Internet last week, temporarily crippling one of the hands I use to type all your nightly posts.</br></br>Sunday, 4:00 AM: I'm at home. I've ordered nachos, delivery, and as I'm getting ready to eat them, my small cat Frances delivers a playful yet puncturing bite to the top of my left hand. I wash it off; I think nothing of it. I eat my nachos and go to sleep.</p><hr>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
+        $('.modelContentBody').append(numbColumns);
+        $('.modelContentBody').append(gap);
+        $(".modelContentBody").append(txtArea);
+        $(".modelContentBody").append(generateButton);
+        $(".modelContentBody").append(textPreview);
 
+        $('.generate').click(function () {
+            $('#txtarea').empty();
+            var newline = String.fromCharCode(13, 10);
+            var firstLine = "-moz-column-count: " + $('.numbColumns').val() + ";" + newline;
+            var secondLine = "-moz-column-gap: "+ $('.numbColumns').val() + ";" + newline;
+            var thridLine = "-webkit-column-count: " + $('.numbColumns').val()+ ";" + newline;
+            var fourth = "-webkit-column-gap: " + $('.gap').val() + 'px;' + newline;
+            var fifth = "column-count: " + $('.numbColumns').val() + ';' + newline;
+            var sixth = "column-gap: " + $('.gap').val() + "px;";
+            $('#txtarea').append(firstLine);
+            $('#txtarea').append(secondLine);
+            $('#txtarea').append(thridLine);
+            $('#txtarea').append(fourth);
+            $('#txtarea').append(fifth);
+            $('#txtarea').append(sixth);
+            $('.textPreview').css('column-count',$('.numbColumns').val());
+            $('.textPreview').css('column-gap',$('.gap').val() + "px");
+            
+        })
 
     }
 
