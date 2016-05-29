@@ -83,6 +83,7 @@ $(document).ready(function () {
     function createRadius() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
+        var modalHead="Generate Border Radius CSS";
         var topLeft = "Top Left &nbsp;<input class='topLeft' type='number'></input><label>&nbsp; px</label></br>";
         var topRight = "Top Right &nbsp;<input class='topRight' type='number'></input><label>&nbsp; px</label></br>";
         var bottomLeft = "Bottom Left &nbsp;<input class='bottomLeft' type='number'></input><label>&nbsp; px</label></br>";
@@ -90,6 +91,8 @@ $(document).ready(function () {
         var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>"
         var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>"
         $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
         $(".modelContentBody").append(topLeft);
         $(".modelContentBody").append(topRight);
         $(".modelContentBody").append(bottomLeft);
@@ -112,6 +115,7 @@ $(document).ready(function () {
     function createBoxShadow() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
+        var modalHead="Generate Box Shadow CSS";
         var inset = "Inset: &nbsp;<input class='inset' type='checkbox'></input></br>"
         var horizontalLength = "Horizontal Length &nbsp;<input class='horizontal-length' type='number'></input><label>&nbsp; px</label></br>";
         var verticalLength = "Vertical Length &nbsp;<input class='vertical-length' type='number'></input><label>&nbsp; px</label></br>";
@@ -121,6 +125,8 @@ $(document).ready(function () {
         var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
         $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
         $(".modelContentBody").append(inset);
         $(".modelContentBody").append(horizontalLength);
         $(".modelContentBody").append(verticalLength);
@@ -152,6 +158,7 @@ $(document).ready(function () {
     function textShadow() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
+        var modalHead="Generate Text Shadow CSS";
         var horizontalLength = "Horizontal Length &nbsp;<input class='horizontal-length' type='number'></input><label>&nbsp; px</label></br>";
         var verticalLength = "Vertical Length &nbsp;<input class='vertical-length' type='number'></input><label>&nbsp; px</label></br>";
         var blurRadius = "Blur Radius &nbsp;<input class='blur-radius' type='number'></input><label>&nbsp; px</label></br>";
@@ -159,6 +166,8 @@ $(document).ready(function () {
         var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
         $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
         $(".modelContentBody").append(horizontalLength);
         $(".modelContentBody").append(verticalLength);
         $(".modelContentBody").append(blurRadius);
@@ -183,6 +192,7 @@ $(document).ready(function () {
     function rgba() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
+        var modalHead="Generate RGBA CSS";
         var r = "<b>R</b> &nbsp;<input class='r' type='number'></input></br>";
         var g = "<b>G</b> &nbsp;<input class='g' type='number'></input></br>";
         var b = "<b>B</b> &nbsp;<input class='b' type='number'></input></br>";
@@ -190,6 +200,8 @@ $(document).ready(function () {
         var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
         $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
         $(".modelContentBody").append(r);
         $(".modelContentBody").append(g);
         $(".modelContentBody").append(b);
@@ -212,11 +224,14 @@ $(document).ready(function () {
     function fontFace() {
         $('.modal-backdrop').css('display', 'block');
         $('#modal-container').css('display', 'block');
-
+        var modalHead="Generate Font-Face CSS";
         var fontFace = "<label>Font Face</label>&nbsp;<input class='fontFamily' type='text'></input></br>";
         var fontName = "<label>Font Face</label>&nbsp;<input class='fontName' type='text'></input></br>";
         var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
         $('.modelContentBody').append(fontFace);
         $('.modelContentBody').append(fontName);
         $(".modelContentBody").append(txtArea);
