@@ -41,7 +41,7 @@
         <p>{{$error}}</p>
         @endforeach
             <div class="content">
-                {!! Form::open(['url'=>'/register', 'id'=>'contact_form']) !!}
+                {!! Form::open(['url'=>'/register', 'id'=>'register_form']) !!}
                     <div class="row">
                         <p>
                             <label for="name">Username</label>

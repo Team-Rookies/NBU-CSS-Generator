@@ -28,19 +28,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function addStyle($style)
-    {
-        $count = Style::where([
-            ['name', $style->name],
-            ['user_id', $this->id]
-        ])->count();
-
-        if ($count < 5) {
-            $style->save();
-            return \Redirect::to('styles');
-        } else {
-            return "Too many " . $style->name . " styles. Try deleting some";
-        }
-    }
 }

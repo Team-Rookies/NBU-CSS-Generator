@@ -38,7 +38,10 @@
     <body>
         <div class="container">
             <div class="content">
-                {!! Form::open(['url'=>'/login', 'id'=>'contact_form']) !!}
+            @foreach($errors->all() as $error)
+                    <p>{{$error}}</p>
+                    @endforeach
+                {!! Form::open(['url'=>'/login', 'id'=>'login_form']) !!}
                     <div class="row">
                         <p>
                             <label for="name">Username</label>

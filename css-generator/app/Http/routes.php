@@ -21,26 +21,10 @@ Route::get('/register', 'LoginController@getRegister');
 Route::post('/register', 'LoginController@postRegister');
 Route::get('/logout', 'LoginController@getLogout');
 
-Route::get('/users', function() {
-    return \Illuminate\Foundation\Auth\User::all();
-});
+Route::get('/styles/add', 'StyleController@showAddStyle');
+Route::post('/styles/add', 'StyleController@postStyle');
+Route::get('/styles', 'StyleController@getStyles');
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/styles/add', function() {
-    $style = new Style();
-
-    $style->name='BoxShadow';
-    $style->code = '-webkit-border-radius:12px 111px 12px 3px;
-border-radius:12px 111px 12px 3px;';
-    $style->user_id = 2;
-
-    $user = \App\User::find($style->user_id);
-    return $user->addStyle($style);
-});
-
-Route::get('/styles', function() {
-    return Style::all();
 });
