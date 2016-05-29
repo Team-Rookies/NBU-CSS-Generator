@@ -17,7 +17,17 @@ $(document).ready(function () {
         $(".modal-backdrop").css('display', 'none');
         $("#modal-container").css('display', 'none');
         $("#preview").css('display', 'none');
+        $( "body" ).removeClass( "dialogIsOpen" );
         flag = false;
+    });
+    $(document).mouseup(function (e) {
+        var container = $("#modal-container");
+        if (!container.is(e.target) // if the target of the click isn't the container...
+            && container.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            container.hide();
+            $( "body" ).removeClass( "dialogIsOpen" );
+        }
     });
 
 
@@ -83,7 +93,7 @@ $(document).ready(function () {
     function createRadius() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
-        var modalHead="Generate Border Radius CSS";
+        var modalHead = "Generate Border Radius CSS";
         var topLeft = "Top Left &nbsp;<input class='topLeft' type='number'></input><label>&nbsp; px</label></br>";
         var topRight = "Top Right &nbsp;<input class='topRight' type='number'></input><label>&nbsp; px</label></br>";
         var bottomLeft = "Bottom Left &nbsp;<input class='bottomLeft' type='number'></input><label>&nbsp; px</label></br>";
@@ -99,6 +109,7 @@ $(document).ready(function () {
         $(".modelContentBody").append(bottomRight);
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
+        $("body").toggleClass("dialogIsOpen");
 
         $(".generate").click(function () {
             $('#txtarea').empty();
@@ -115,7 +126,7 @@ $(document).ready(function () {
     function createBoxShadow() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
-        var modalHead="Generate Box Shadow CSS";
+        var modalHead = "Generate Box Shadow CSS";
         var inset = "Inset: &nbsp;<input class='inset' type='checkbox'></input></br>"
         var horizontalLength = "Horizontal Length &nbsp;<input class='horizontal-length' type='number'></input><label>&nbsp; px</label></br>";
         var verticalLength = "Vertical Length &nbsp;<input class='vertical-length' type='number'></input><label>&nbsp; px</label></br>";
@@ -137,6 +148,8 @@ $(document).ready(function () {
         $(".modelContentBody").append(generateButton);
         $('.hex-color').hexColorPicker();
         $('#txtarea').css('bottom', '-28px');
+        $("body").toggleClass("dialogIsOpen");
+        
         $(".generate").click(function () {
             $('#txtarea').empty();
             var inset = $('.inset').val();
@@ -158,7 +171,7 @@ $(document).ready(function () {
     function textShadow() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
-        var modalHead="Generate Text Shadow CSS";
+        var modalHead = "Generate Text Shadow CSS";
         var horizontalLength = "Horizontal Length &nbsp;<input class='horizontal-length' type='number'></input><label>&nbsp; px</label></br>";
         var verticalLength = "Vertical Length &nbsp;<input class='vertical-length' type='number'></input><label>&nbsp; px</label></br>";
         var blurRadius = "Blur Radius &nbsp;<input class='blur-radius' type='number'></input><label>&nbsp; px</label></br>";
@@ -176,6 +189,8 @@ $(document).ready(function () {
         $(".modelContentBody").append(generateButton);
         $('.hex-color').hexColorPicker();
         $('#txtarea').css('bottom', '-28px');
+        $("body").toggleClass("dialogIsOpen");
+        
         $(".generate").click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
@@ -192,7 +207,7 @@ $(document).ready(function () {
     function rgba() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
-        var modalHead="Generate RGBA CSS";
+        var modalHead = "Generate RGBA CSS";
         var r = "<b>R</b> &nbsp;<input class='r' type='number'></input></br>";
         var g = "<b>G</b> &nbsp;<input class='g' type='number'></input></br>";
         var b = "<b>B</b> &nbsp;<input class='b' type='number'></input></br>";
@@ -208,6 +223,8 @@ $(document).ready(function () {
         $(".modelContentBody").append(opacity);
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
+        $("body").toggleClass("dialogIsOpen");
+        
         $(".generate").click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
@@ -224,7 +241,7 @@ $(document).ready(function () {
     function fontFace() {
         $('.modal-backdrop').css('display', 'block');
         $('#modal-container').css('display', 'block');
-        var modalHead="Generate Font-Face CSS";
+        var modalHead = "Generate Font-Face CSS";
         var fontFace = "<label>Font Face</label>&nbsp;<input class='fontFamily' type='text'></input></br>";
         var fontName = "<label>Font Face</label>&nbsp;<input class='fontName' type='text'></input></br>";
         var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
@@ -236,6 +253,7 @@ $(document).ready(function () {
         $('.modelContentBody').append(fontName);
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
+        $("body").toggleClass("dialogIsOpen");
 
         $('.generate').click(function () {
             $('#txtarea').empty();
@@ -256,7 +274,7 @@ $(document).ready(function () {
     function multipleColumns() {
         $('.modal-backdrop').css('display', 'block');
         $('#modal-container').css('display', 'block');
-        var modalHead="Generate Multiple Columns CSS";
+        var modalHead = "Generate Multiple Columns CSS";
         var numbColumns = "<label># of columns</label>&nbsp;<input class='numbColumns' type='text'></input></br>";
         var gap = "<label>Column Gap</label>&nbsp;<input class='gap' type='text'></input></br>";
         var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
@@ -270,13 +288,14 @@ $(document).ready(function () {
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
         $(".modelContentBody").append(textPreview);
+        $("body").toggleClass("dialogIsOpen");
 
         $('.generate').click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
             var firstLine = "-moz-column-count: " + $('.numbColumns').val() + ";" + newline;
-            var secondLine = "-moz-column-gap: "+ $('.numbColumns').val() + ";" + newline;
-            var thridLine = "-webkit-column-count: " + $('.numbColumns').val()+ ";" + newline;
+            var secondLine = "-moz-column-gap: " + $('.numbColumns').val() + ";" + newline;
+            var thridLine = "-webkit-column-count: " + $('.numbColumns').val() + ";" + newline;
             var fourth = "-webkit-column-gap: " + $('.gap').val() + 'px;' + newline;
             var fifth = "column-count: " + $('.numbColumns').val() + ';' + newline;
             var sixth = "column-gap: " + $('.gap').val() + "px;";
@@ -286,15 +305,44 @@ $(document).ready(function () {
             $('#txtarea').append(fourth);
             $('#txtarea').append(fifth);
             $('#txtarea').append(sixth);
-            $('.textPreview').css('column-count',$('.numbColumns').val());
-            $('.textPreview').css('column-gap',$('.gap').val() + "px");
-            
+            $('.textPreview').css('column-count', $('.numbColumns').val());
+            $('.textPreview').css('column-gap', $('.gap').val() + "px");
+
         })
 
     }
 
     function boxResize() {
+        $('.modal-backdrop').css('display', 'block');
+        $('#modal-container').css('display', 'block');
+        var modalHead = "Generate Box Resize CSS";
+        var fontFace = "<label>Font Face</label>&nbsp;<input class='fontFamily' type='text'></input></br>";
+        var fontName = "<label>Font Face</label>&nbsp;<input class='fontName' type='text'></input></br>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
+        $('.modelContentBody').append(fontFace);
+        $('.modelContentBody').append(fontName);
+        $(".modelContentBody").append(txtArea);
+        $(".modelContentBody").append(generateButton);
+        $("body").toggleClass("dialogIsOpen");
 
+        $('.generate').click(function () {
+            $('#txtarea').empty();
+            var newline = String.fromCharCode(13, 10);
+            var firstLine = "@font-face {" + newline;
+            var secondLine = "&#9;font-family: &quot;" + $('.fontFamily').val() + "&quot; ;" + newline;
+            var thridLine = '&#9;src: url("' + $('.fontName').val() + '.eot") format("eot"),' + newline;
+            var fourth = '&#9;url("' + $('.fontName').val() + '.woff") format("woff"),' + newline;
+            var fifth = '&#9;url("' + $('.fontName').val() + '.ttf") format("truetype"),' + newline + "}";
+            $('#txtarea').append(firstLine);
+            $('#txtarea').append(secondLine);
+            $('#txtarea').append(thridLine);
+            $('#txtarea').append(fourth);
+            $('#txtarea').append(fifth);
+        })
 
     }
 

@@ -62,4 +62,6 @@
 }
 
 
-
+.dialogIsOpen #main-container {
+  -webkit-filter: blur(5px) grayscale(50%);
+}
