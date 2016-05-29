@@ -41,7 +41,7 @@ $(document).ready(function () {
                 flag = false;
                 break;
             case 'font-face':
-                console.log("font-face");
+                fontFace();
                 flag = false;
                 break;
             case 'multiple-columns':
@@ -173,7 +173,7 @@ $(document).ready(function () {
             var partOne = "text-shadow: " + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".hex-color").val() + ";";
             $('#txtarea').append(partOne);
             $("#preview").css('display', 'block');
-            $("#preview").css('text-shadow',$(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".hex-color").val());
+            $("#preview").css('text-shadow', $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".hex-color").val());
         })
 
 
@@ -196,24 +196,46 @@ $(document).ready(function () {
         $(".modelContentBody").append(opacity);
         $(".modelContentBody").append(txtArea);
         $(".modelContentBody").append(generateButton);
-        $('.hex-color').hexColorPicker();
-        $('#txtarea').css('bottom', '-28px');
         $(".generate").click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
-            var partOne = "background-color: rgba(" + $(".r").val() + ", " + $(".g").val() + ", " + $(".b").val() + ", " + $(".opacity").val() +");";
-            var partTwo = "color: rgba(" + $(".r").val() + ", " + $(".g").val() + ", " + $(".b").val() + ", " + $('.opacity').val() +");";
+            var partOne = "background-color: rgba(" + $(".r").val() + ", " + $(".g").val() + ", " + $(".b").val() + ", " + $(".opacity").val() + ");";
+            var partTwo = "color: rgba(" + $(".r").val() + ", " + $(".g").val() + ", " + $(".b").val() + ", " + $('.opacity').val() + ");";
             $('#txtarea').append(partOne);
             $('#txtarea').append(newline);
             $('#txtarea').append(partTwo);
             $("#preview").css('display', 'block');
-            $("#preview").css('text-decoration','bold');
-            $("#preview").css('background-color','rgba(' + $('.r').val() + ', ' + $('.g').val() + ', ' + $('.b').val() + ', ' + $('.opacity').val() +')');
+            $("#preview").css('text-decoration', 'bold');
+            $("#preview").css('background-color', 'rgba(' + $('.r').val() + ', ' + $('.g').val() + ', ' + $('.b').val() + ', ' + $('.opacity').val() + ')');
         })
     }
     function fontFace() {
+        $('.modal-backdrop').css('display', 'block');
+        $('#modal-container').css('display', 'block');
 
+        var fontFace = "<label>Font Face</label>&nbsp;<input class='fontFamily' type='text'></input></br>";
+        var fontName = "<label>Font Face</label>&nbsp;<input class='fontName' type='text'></input></br>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        $('.modelContentBody').append(fontFace);
+        $('.modelContentBody').append(fontName);
+        $(".modelContentBody").append(txtArea);
+        $(".modelContentBody").append(generateButton);
 
+        $('.generate').click(function () {
+            $('#txtarea').empty();
+            var newline = String.fromCharCode(13, 10);
+            var firstLine = "@font-face {" + newline;
+            var secondLine = "&#9;font-family: &quot;" + $('.fontFamily').val() + "&quot; ;" + newline;
+            var thridLine = '&#9;src: url("' + $('.fontName').val() + '.eot") format("eot"),' + newline;
+            var fourth = '&#9;url("' + $('.fontName').val() + '.woff") format("woff"),' + newline;
+            var fifth = '&#9;url("' + $('.fontName').val() + '.ttf") format("truetype"),' + newline + "}";
+            $('#txtarea').append(firstLine);
+            $('#txtarea').append(secondLine);
+            $('#txtarea').append(thridLine);
+            $('#txtarea').append(fourth);
+            $('#txtarea').append(fifth);
+        })
     }
 
     function multipleColumns() {
