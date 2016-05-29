@@ -18,6 +18,16 @@
                     </div>
                     <div class="row">
                         <p>
+                            <label for="type">Type</label>
+                            <select name="type" id="type">
+                                @foreach(\App\StyleType::getKeys() as $style)
+                                <option value="{{$style}}">{{$style}}</option>
+                                @endforeach
+                            </select>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p>
                             <label for="code">Code</label>
                             <textarea name="code" id="code" cols="30" rows="10">{{old('code')}}</textarea>
                         </p>

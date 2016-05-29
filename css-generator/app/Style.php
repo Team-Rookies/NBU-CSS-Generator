@@ -10,5 +10,5 @@ class Style extends Model
         return $this->belongsTo('App\User');
     }
 
-    protected $fillable = ['name', 'code', 'user_id'];
+    protected $fillable = ['name', 'type', 'code', 'user_id'];
 }

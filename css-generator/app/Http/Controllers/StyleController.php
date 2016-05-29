@@ -17,7 +17,7 @@ class StyleController extends Controller
     public function getStyles()
     {
         if(\Auth::check()) {
-            return Style::where('user_id', \Auth::user()->id)->get();
+            return view('styles', ['styles' => Style::where('user_id', \Auth::user()->id)->get()]);
         } else {
             return "You must be logged in to perform this action.";
         }
@@ -32,6 +32,7 @@ class StyleController extends Controller
     {
         if(\Auth::check()) {
             $rules = ['name'=>'required',
+                'type'=>'required',
                 'code'=>'required'];
 
             $validator = Validator::make(Input::all(), $rules);
@@ -44,7 +45,7 @@ class StyleController extends Controller
             $checkName = false;
 
             foreach(StyleType::getKeys() as $style) {
-                if($style == Input::get('name')) {
+                if($style == Input::get('type')) {
                     $checkName = true;
                 }
             }
@@ -53,13 +54,14 @@ class StyleController extends Controller
                 $style = new Style();
 
                 $style->name = Input::get('name');
+                $style->type = Input::get('type');
                 $style->code = Input::get('code');
                 $style->user_id = \Auth::user()->id;
 
                 $user = \App\User::find($style->user_id);
 
                 $count = Style::where([
-                    ['name', $style->name],
+                    ['type', $style->type],
                     ['user_id', $user->id]
                 ])->count();
 
@@ -67,7 +69,7 @@ class StyleController extends Controller
                     $style->save();
                     return \Redirect::to('styles');
                 } else {
-                    return "Too many " . $style->name . " styles. Try deleting some";
+                    return "Too many " . $style->type . " styles. Try deleting some";
                 }
             } else {
                 return \Redirect::to('/styles/add')
@@ -79,4 +81,18 @@ class StyleController extends Controller
         }
     }
 
+    public function deleteStyle($id) {
+        $style = Style::find($id);
+
+        if($style != null) {
+            if($style->user_id == \Auth::user()->id) {
+                $style->delete();
+                return Redirect::to('styles');
+            } else {
+                return Redirect::to('styles')->withErrors('Invalid authentication, please log in with other user');
+            }
+        } else {
+            return Redirect::to('styles')->withErrors("Style not found!");
+        }
+    }
 }
