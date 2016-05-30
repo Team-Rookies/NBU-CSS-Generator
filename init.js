@@ -67,7 +67,7 @@ $(document).ready(function () {
                 flag = false;
                 break;
             case 'box-resizing':
-                console.log("box-resizing");
+                boxSizing()
                 flag = false;
                 break;
             case 'outline':
@@ -355,9 +355,34 @@ $(document).ready(function () {
 
     }
 
-    function boxResizing() {
+    function boxSizing() {
+        $('.modal-backdrop').css('display', 'block');
+        $('#modal-container').css('display', 'block');
+        var modalHead = "Generate Box Sizing CSS";
+        var sizingType = "<b>Box Sizing: </b><select class='sizingType' name='type'><option value='none'>NONE</option><option value='content-box'>Content Box</option><option value='border-box'>Border Box</option></select></br>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
+        $('.modelContentBody').append(sizingType);
+        $(".modelContentBody").append(generateButton);
+        $(".modelContentBody").append(txtArea);
+        $("body").toggleClass("dialogIsOpen");
 
+        $('.generate').click(function () {
+            $('#txtarea').empty();
+            var newline = String.fromCharCode(13, 10);
 
+            if ($('.sizingType').val() == "content-box") {
+                var firstLine = "-moz-box-sizing: content-box;" + newline + "-webkit-box-sizing: content-box;" + newline + "box-sizing: content-box;";
+            } else if ($('.sizingType').val() == "border-box") {
+                var firstLine = "-moz-box-sizing: border-box;" + newline + "-webkit-box-sizing: border-box;" + newline + "box-sizing: border-box;";
+            } else {
+                $('#txtarea').empty();
+            }
+            $('#txtarea').append(firstLine);
+        })
     }
 
 });
