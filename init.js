@@ -26,7 +26,7 @@ $(document).ready(function () {
         var preview = $('#preview');
         var previewText = $('#preview-text');
         if ((!preview.is(e.target) && !previewText.is(e.target) && !container.is(e.target)) // if the target of the click isn't the container...
-                && container.has(e.target).length === 0) // ... nor a descendant of the container
+            && container.has(e.target).length === 0) // ... nor a descendant of the container
         {
             container.hide();
             $("#preview").css('display', 'none');
@@ -67,11 +67,11 @@ $(document).ready(function () {
                 flag = false;
                 break;
             case 'box-resizing':
-                boxSizing()
+                boxSizing();
                 flag = false;
                 break;
             case 'outline':
-                console.log("outline");
+                outline();
                 flag = false;
                 break;
             case 'transition':
@@ -280,7 +280,7 @@ $(document).ready(function () {
         $('.modal-backdrop').css('display', 'block');
         $('#modal-container').css('display', 'block');
         var modalHead = "Generate Multiple Columns CSS";
-        var numbColumns = "<label># of columns</label>&nbsp;<input class='numbColumns' type='text'></input></br>";
+        var numbColumns = "<label># of columns</label>&nbsp;<input class='numbColumns' type='number'></input></br>";
         var gap = "<label>Column Gap</label>&nbsp;<input class='gap' type='text'></input></br>";
         var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         var textPreview = "<hr><p class='textPreview'>All of you who are under the impression that cats are absolutely the best thing for the Internet—producing GIFs and memes galore—are bloody delusional. My 8lb house cat Franny almost destroyed a small section of your Internet last week, temporarily crippling one of the hands I use to type all your nightly posts.</br></br>Sunday, 4:00 AM: I'm at home. I've ordered nachos, delivery, and as I'm getting ready to eat them, my small cat Frances delivers a playful yet puncturing bite to the top of my left hand. I wash it off; I think nothing of it. I eat my nachos and go to sleep.</p><hr>";
@@ -382,6 +382,40 @@ $(document).ready(function () {
                 $('#txtarea').empty();
             }
             $('#txtarea').append(firstLine);
+        })
+    }
+
+    function outline() {
+        $('.modal-backdrop').css('display', 'block');
+        $('#modal-container').css('display', 'block');
+        var modalHead = "Generate Outline Offset CSS";
+        var outlineThickness = "<label>Outline Thickness: </label>&nbsp;<input class='outlineThickness' type='number'></input>&nbsp;px</br>";
+        var sizingType = "<b>Outline Type: </b><select class='outlineType' name='type'><option value='dotted'>Dotted</option><option value='dashed'>Dashed</option><option value='solid'>Solid</option><option value='Groove'>Groove</option><option value='ridge'>Ridge</option><option value='inset'>Inset</option><option value='outset'>Outset</option><option value='double'>Double</option><option value='auto'>Auto</option></select></br>";
+        var outlineColor = "<b>Outline Color</b> &nbsp;<input class='hex-color' type='text'></input></br>";
+        var outlineOffset = "<label>Outline Offset: </label>&nbsp;<input class='outlineOffset' type='number'></input>&nbsp;px</br>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
+        $('.modelContentBody').append(outlineThickness);
+        $('.modelContentBody').append(sizingType);
+        $('.modelContentBody').append(outlineColor);
+        $('.modelContentBody').append(outlineOffset);
+        $(".modelContentBody").append(generateButton);
+        $(".modelContentBody").append(txtArea);
+        $('.hex-color').hexColorPicker();
+        $("body").toggleClass("dialogIsOpen");
+
+        $('.generate').click(function () {
+            $('#txtarea').empty();
+            var newline = String.fromCharCode(13, 10);
+
+            var firstLine = "outline: " + $('.outlineThickness').val() + "px " + $('.outlineType').val() + " " + $('.hex-color').val() + ";" + newline + "outline-offset: " + $('.outlineOffset').val() + "px;";
+            $('#txtarea').append(firstLine);
+
+            $("#preview").attr('style', 'display: block; outline-offset:' + $('.outlineOffset').val() + 'px ;' + 'outline: ' + $('.hex-color').val() + ' ' + $('.outlineType').val() + ' ' + $('.outlineThickness').val() + 'px');
+
         })
     }
 
