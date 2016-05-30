@@ -16,15 +16,17 @@ $(document).ready(function () {
     $('.close').on('click', function () {
         $(".modal-backdrop").css('display', 'none');
         $("#modal-container").css('display', 'none');
+        $("#preview").removeAttr('style');
         $("#preview").css('display', 'none');
         $("body").removeClass("dialogIsOpen");
         flag = false;
     });
     $(document).mouseup(function (e) {
         var container = $("#modal-container");
-        var preview = $('#previe');
-        if ((!preview.is(e.target) && !container.is(e.target)) // if the target of the click isn't the container...
-            && container.has(e.target).length === 0) // ... nor a descendant of the container
+        var preview = $('#preview');
+        var previewText = $('#preview-text');
+        if ((!preview.is(e.target) && !previewText.is(e.target) && !container.is(e.target)) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
         {
             container.hide();
             $("#preview").css('display', 'none');
@@ -155,7 +157,10 @@ $(document).ready(function () {
             $('#txtarea').empty();
             var inset = $('.inset').val();
             var appInset = "";
-            if ($('.inset').prop('checked')) { appInset = "inset " };
+            if ($('.inset').prop('checked')) {
+                appInset = "inset "
+            }
+            ;
 
 
             var newline = String.fromCharCode(13, 10);
@@ -164,7 +169,6 @@ $(document).ready(function () {
             $('#txtarea').append(partOne);
             $('#txtarea').append(newline);
             $('#txtarea').append(partTwo);
-
             $("#preview").css('display', 'block');
             $("#preview").css('box-shadow', appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val());
         })
