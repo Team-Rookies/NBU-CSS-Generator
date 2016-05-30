@@ -22,7 +22,8 @@ $(document).ready(function () {
     });
     $(document).mouseup(function (e) {
         var container = $("#modal-container");
-        if (!container.is(e.target) // if the target of the click isn't the container...
+        var preview = $('#previe');
+        if ((!preview.is(e.target) && !container.is(e.target)) // if the target of the click isn't the container...
             && container.has(e.target).length === 0) // ... nor a descendant of the container
         {
             container.hide();
