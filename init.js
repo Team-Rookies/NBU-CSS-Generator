@@ -75,7 +75,7 @@ $(document).ready(function () {
                 flag = false;
                 break;
             case 'transition':
-                console.log("transition");
+                transition();
                 flag = false;
                 break;
             case 'transform':
@@ -416,6 +416,34 @@ $(document).ready(function () {
 
             $("#preview").attr('style', 'display: block; outline-offset:' + $('.outlineOffset').val() + 'px ;' + 'outline: ' + $('.hex-color').val() + ' ' + $('.outlineType').val() + ' ' + $('.outlineThickness').val() + 'px');
 
+        })
+    }
+
+    function transition() {
+        $('.modal-backdrop').css('display', 'block');
+        $('#modal-container').css('display', 'block');
+        var modalHead = "Generate Transiotion CSS";
+        var duration = "<label>Duration: </label>&nbsp;<input class='duration' type='number'></input>&nbsp;Milliseconds</br>";
+        var property = "<b>Property: </b><select class='property' name='type'><option value='all'>All</option><option value='background'>Background</option><option value='color'>Color</option><option value='height'>Height</option><option value='width'>Width</option><option value='outline'>Outline</option></select></br>";
+        var cssfunction = "<b>Function: </b><select class='cssfunction' name='type'><option value='ease'>Ease</option><option value='linear'>Linear</option><option value='ease-in'>Ease-In</option><option value='ease-out'>Ease-Out</option><option value='ease-in-out'>Ease-In-Out</option><option value='outline'>Outline</option></select></br>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
+        $('.modelContentBody').append(property);
+        $('.modelContentBody').append(duration);
+        $('.modelContentBody').append(cssfunction);
+        $(".modelContentBody").append(generateButton);
+        $(".modelContentBody").append(txtArea);
+        $("body").toggleClass("dialogIsOpen");
+
+        $('.generate').click(function () {
+            $('#txtarea').empty();
+            var newline = String.fromCharCode(13, 10);
+
+            var line = "-webkit-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "-moz-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "-ms-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "-o-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";";
+            $('#txtarea').append(line);
         })
     }
 
