@@ -79,7 +79,7 @@ $(document).ready(function () {
                 flag = false;
                 break;
             case 'transform':
-                console.log("transform");
+                transform();
                 flag = false;
                 break;
             case 'nothing':
@@ -452,12 +452,47 @@ $(document).ready(function () {
                 $(this).css("height", "250px");
                 $(this).css("width", "250px");
                 $(this).css("outline", "#ff1b1b dotted 5px");
-                $(this).css('transition',$('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val());
-            },function () {
+                $(this).css('transition', $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val());
+            }, function () {
                 $(this).attr('style', '');
-                $(this).css('display','block');
-                $(this).css('transition','all 500ms ease');
+                $(this).css('display', 'block');
+                $(this).css('transition', 'all 500ms ease');
             });
+
+
+        })
+    }
+
+    function transform() {
+        $('.modal-backdrop').css('display', 'block');
+        $('#modal-container').css('display', 'block');
+        var modalHead = "Generate Transform CSS";
+        var scale = "<label>Scale: </label>&nbsp;<input class='scale' type='number'></input></br>";
+        var rotate = "<label>Rotate: </label>&nbsp;<input class='rotate' type='number'></input> degree</br>";
+        var translate = "<label>Translate: </label>&nbsp;<input class='translate1' type='number'></input>px <input class='translate2' type='number'></input>px</br>";
+        var skew = "<label>Skew: </label>&nbsp;<input class='skew1' type='number'></input>degree <input class='skew2' type='number'></input>degree</br>";
+        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
+        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
+        $(".modelContentBody").empty();
+        $('.modal-head-h3').empty();
+        $('.modal-head-h3').append(modalHead);
+        $('.modelContentBody').append(scale);
+        $('.modelContentBody').append(rotate);
+        $('.modelContentBody').append(translate);
+        $('.modelContentBody').append(skew);
+        $(".modelContentBody").append(generateButton);
+        $(".modelContentBody").append(txtArea);
+        $("body").toggleClass("dialogIsOpen");
+
+        $('.generate').click(function () {
+            $('#txtarea').empty();
+            var newline = String.fromCharCode(13, 10);
+
+            var line = "-moz-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + newline + "-webkit-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + "-o-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + newline + "-ms-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + newline + "transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);";
+            $('#txtarea').append(line);
+            $("#preview").css('display', 'block');
+            $('#preview').css('top', '76%')
+            $('#preview').attr('style','display:block;top:76%;'+"transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);");
 
 
         })
