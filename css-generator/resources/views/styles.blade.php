@@ -21,7 +21,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{{asset('js/view.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/hex-colorpicker/src/jquery-hex-colorpicker.js')}}" type="text/javascript"></script>
 </head>
 
@@ -32,16 +31,18 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="http://e-edu.nbu.bg">Moodle</a></li>
-                        <li><a href="http://www.nbu.bg">NBU</a></li>
-                    </ul>
+                     <ul class="nav navbar-nav">
+                
+                    <li><a href="/">Home</a></li>
+                    <li><a href="http://e-edu.nbu.bg">Moodle</a></li>
+                    <li><a href="http://www.nbu.bg">NBU</a></li>
+                </ul>
 
-                    <ul class="nav navbar-nav navbar-right" id="adminHeader">
-                        <li id="login"><a href="admin/login.html">Login</a></li>
-                        <li id="login"><a href="view-panel.html">View Saved Styles</a></li>
-                    </ul>
+                <ul class="nav navbar-nav navbar-right" id="adminHeader">
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/styles">View Saved Styles</a></li>
+                </ul>
                 </div>
             </div>
         </nav>
