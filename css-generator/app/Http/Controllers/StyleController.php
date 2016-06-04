@@ -19,7 +19,7 @@ class StyleController extends Controller
         if(\Auth::check()) {
             return view('styles', ['styles' => Style::where('user_id', \Auth::user()->id)->get()]);
         } else {
-            return "You must be logged in to perform this action.";
+            return Redirect::to('login')->withErrors('You must be logged in to perform this action');
         }
     }
 

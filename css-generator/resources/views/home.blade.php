@@ -32,7 +32,7 @@
         <div class="container">
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                {{Auth::check()}}
+                
                     <li><a href="/">Home</a></li>
                     <li><a href="http://e-edu.nbu.bg">Moodle</a></li>
                     <li><a href="http://www.nbu.bg">NBU</a></li>

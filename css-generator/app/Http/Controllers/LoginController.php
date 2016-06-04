@@ -52,12 +52,18 @@ class LoginController extends Controller
                 ->withErrors($validator->messages());
         }
 
-        User::create([
+        $creds = [
             'name'=>Input::get('name'),
-            'password'=>Hash::make(Input::get('password'))
-        ]);
+            'password'=>Input::get('password')
+        ];
 
-        return Redirect::to('users');
+        User::create($creds);
+
+        if(Auth::attempt($creds)) {
+            return Redirect::to('/');
+        } else {
+            return Redirect::to('login');
+        }
     }
 
     public function getLogout()
