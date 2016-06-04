@@ -10,6 +10,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Redirect;
+use Response;
 
 class StyleController extends Controller
 {
@@ -37,9 +38,11 @@ class StyleController extends Controller
 
             $validator = Validator::make(Input::all(), $rules);
             if($validator->fails()) {
-                return Redirect::to('/styles/add')
-                    ->withInput()
-                    ->withErrors($validator->messages());
+                return Response::json(array(
+                    'success' => false,
+                    'errors' => $validator->messages()->toArray()
+
+                ), 400);
             }
 
             $checkName = false;
@@ -67,17 +70,29 @@ class StyleController extends Controller
 
                 if ($count < 5) {
                     $style->save();
-                    return \Redirect::to('styles');
+                    return Response::json(array(
+                        'success' => true
+                    ), 200);
                 } else {
-                    return "Too many " . $style->type . " styles. Try deleting some";
+                    return Response::json(array(
+                        'success' => false,
+                        'errors' => "Too many " . $style->type . " styles. Try deleting some"
+
+                    ), 409);
                 }
             } else {
-                return \Redirect::to('/styles/add')
-                    ->withInput()
-                    ->withErrors("Style type not supported ");
+                return Response::json(array(
+                    'success' => false,
+                    'errors' => "Style type not supported."
+
+                ), 400);
             }
         } else {
-            return \Redirect::to('/login');
+            return Response::json(array(
+                'success' => false,
+                'errors' => 'Redirect to login'
+
+            ), 401);
         }
     }
 

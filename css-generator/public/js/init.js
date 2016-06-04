@@ -1,4 +1,5 @@
 var flag = false;
+var hasSave = false;
 $(document).ready(function () {
     $(".handler").each(function (index) {
         $(this).on("click", function (event) {
@@ -20,6 +21,7 @@ $(document).ready(function () {
         $("#preview").css('display', 'none');
         $("body").removeClass("dialogIsOpen");
         flag = false;
+        hasSave = false;
     });
     $(document).keyup(function(e) {
         if (e.keyCode == 27) {
@@ -33,6 +35,7 @@ $(document).ready(function () {
                 $("#preview").css('display', 'none');
                 $("body").removeClass("dialogIsOpen");
             }
+            hasSave = false;
         }
     });
     //$(document).mouseup(function (e) {
@@ -140,8 +143,11 @@ $(document).ready(function () {
             $("#preview").css('display', 'block');
             $("#preview").css('border-radius', $(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px");
 
-            addNameField();
-            addSaveButton('BorderRadius');
+            if(!hasSave) {
+                hasSave = true;
+                addNameField();
+                addSaveButton('BorderRadius');
+            }
         });
     }
 
@@ -191,8 +197,11 @@ $(document).ready(function () {
             $("#preview").css('display', 'block');
             $("#preview").css('box-shadow', appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val());
 
-            addNameField();
-            addSaveButton('BoxShadow');
+            if(!hasSave) {
+
+                addNameField();
+                addSaveButton('BoxShadow');
+            }
         });
     }
 
@@ -264,8 +273,10 @@ $(document).ready(function () {
             $("#preview").css('text-decoration', 'bold');
             $("#preview").css('background-color', 'rgba(' + $('.r').val() + ', ' + $('.g').val() + ', ' + $('.b').val() + ', ' + $('.opacity').val() + ')');
 
-            addNameField();
-            addSaveButton('RGBA');
+            if(!hasSave) {
+                addNameField();
+                addSaveButton('RGBA');
+            }
         });
     }
 
@@ -300,8 +311,10 @@ $(document).ready(function () {
             $('#txtarea').append(fourth);
             $('#txtarea').append(fifth);
 
-            addNameField();
-            addSaveButton('FontFace');
+            if(!hasSave) {
+                addNameField();
+                addSaveButton('FontFace');
+            }
         })
     }
 
@@ -342,8 +355,10 @@ $(document).ready(function () {
             $('.textPreview').css('column-count', $('.numbColumns').val());
             $('.textPreview').css('column-gap', $('.gap').val() + "px");
 
-            addNameField();
-            addSaveButton('MultipleColumns');
+            if(!hasSave) {
+                addNameField();
+                addSaveButton('MultipleColumns');
+            }
         })
     }
 
@@ -382,8 +397,10 @@ $(document).ready(function () {
             $("#preview").css('width', $('.minWidth').val() + 'px');
             $("#preview").css('height', $('.minHeight').val() + 'px');
 
-            addNameField();
-            addSaveButton('BoxResize');
+            if(!hasSave) {
+                addNameField();
+                addSaveButton('BoxResize');
+            }
         })
 
     }
@@ -416,8 +433,10 @@ $(document).ready(function () {
             }
             $('#txtarea').append(firstLine);
 
-            addNameField();
-            addSaveButton('BoxSizing');
+            if(!hasSave) {
+                addNameField();
+                addSaveButton('BoxSizing');
+            }
         })
     }
 
@@ -451,8 +470,10 @@ $(document).ready(function () {
             $('#txtarea').append(firstLine);
 
             $("#preview").attr('style', 'display: block; outline-offset:' + $('.outlineOffset').val() + 'px ;' + 'outline: ' + $('.hex-color').val() + ' ' + $('.outlineType').val() + ' ' + $('.outlineThickness').val() + 'px');
-            addNameField()
-            addSaveButton('Outline');
+            if(!hasSave) {
+                addNameField()
+                addSaveButton('Outline');
+            }
 
         })
     }
@@ -496,8 +517,11 @@ $(document).ready(function () {
                 $(this).css('display', 'block');
                 $(this).css('transition', 'all 500ms ease');
             });
-            addNameField();
-            addSaveButton('Transition');
+
+            if(!hasSave) {
+                addNameField();
+                addSaveButton('Transition');
+            }
         })
     }
 
@@ -532,8 +556,10 @@ $(document).ready(function () {
             $('#preview').css('top', '76%')
             $('#preview').attr('style', 'display:block;top:76%;' + "transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);");
 
-            addNameField();
-            addSaveButton('Transform');
+            if(!hasSave) {
+                addNameField();
+                addSaveButton('Transform');
+            }
         })
     }
 
@@ -562,6 +588,30 @@ $(document).ready(function () {
                 name: options.name,
                 type: options.type,
                 code: $('textarea').text()
+            },
+            success: function(data) {
+                noty({
+                    theme: 'defaultTheme',
+                    layout: 'top',
+                    text: 'Saved new style',
+                    type: 'success',
+                    timeout: 2000
+                });
+                window.location.replace('/styles');
+            },
+            error: function(error) {
+                var err = JSON.parse(error.responseText);
+                if(error.status === 401) {
+                    window.location.replace('/login');
+                } else {
+                    noty({
+                        theme: 'defaultTheme',
+                        layout: 'top',
+                        text: err.errors,
+                        type: 'error',
+                        timeout: 2000
+                    });
+                }
             }
         })
     }
