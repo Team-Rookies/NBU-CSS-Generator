@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Team ROOKIE">
+
+    <title>CSS3 Generator - Team ROOKIE Product</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('css/jquery-hex-colorpicker.css')}}" type="text/css"/>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/init.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/hex-colorpicker/src/jquery-hex-colorpicker.js')}}" type="text/javascript"></script>
+</head>
+
+<body>
+
+
+<div class="jumbotron" id="head-container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="http://e-edu.nbu.bg">Moodle</a></li>
+                    <li><a href="http://www.nbu.bg">NBU</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" id="adminHeader">
+                    <li><a href="admin/login.html">Login</a></li>
+                    <li><a href="view-panel.html">View Saved Styles</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </br>
+    <div class="container">
+        <h1>NBU CSS3 Generator</h1>
+        <p>Team ROOKIE project 2.0</p>
+        </br>
+        </br>
+        </br>
+
+
+    </div>
+</div>
+
+<!-- Page Content -->
+
+<div class="container" id="main-container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Chose what you want to generate</h1>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="radius">
+                Border radius
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="shadow">
+                Box Shadow
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="text-shadow">
+                Text Shadow
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="rgba">
+                RGBA
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="font-face">
+                Font Face
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="multiple-columns">
+                Multiple Columns
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="box-resize">
+                Box Resize
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="box-resizing">
+                Box Resizing
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="outline">
+                Outline
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="transition">
+                Transition
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="transform">
+                Transform
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <button type="button" class="btn btn-default handler" type-modal="nothing">
+                Nothing
+            </button>
+        </div>
+    </div>
+
+    <hr>
+
+</div>
+<div>
+
+
+    <div id="modal-container">
+        <div class="model-dialog">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true">&times;</button>
+                <h3 class="modal-head-h3"></h3>
+            </div>
+            <div class="modal-body modelContentBody " style="height: 550px"></div>
+        </div>
+    </div>
+
+    <div id="preview">
+        <h3 id="preview-text">PREVIEW</h3>
+    </div>
+
+
+
+    <div id="footer">
+        <div class="container">
+            <p>Copyright &copy; Бате Светльо is BACK!</p>
+        </div>
+    </div>
+    <!-- Footer -->
+
+</div>
+</body>
+
+</html>

@@ -27,5 +27,5 @@ Route::get('/styles', 'StyleController@getStyles');
 Route::get('/styles/delete/{id}', 'StyleController@deleteStyle');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
