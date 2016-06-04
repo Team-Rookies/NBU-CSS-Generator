@@ -21,18 +21,32 @@ $(document).ready(function () {
         $("body").removeClass("dialogIsOpen");
         flag = false;
     });
-    $(document).mouseup(function (e) {
-        var container = $("#modal-container");
-        var preview = $('#preview');
-        var previewText = $('#preview-text');
-        if ((!preview.is(e.target) && !previewText.is(e.target) && !container.is(e.target)) // if the target of the click isn't the container...
-            && container.has(e.target).length === 0) // ... nor a descendant of the container
-        {
-            container.hide();
-            $("#preview").css('display', 'none');
-            $("body").removeClass("dialogIsOpen");
+    $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+            var container = $("#modal-container");
+            var preview = $('#preview');
+            var previewText = $('#preview-text');
+            if ((!preview.is(e.target) && !previewText.is(e.target) && !container.is(e.target)) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+                container.hide();
+                $("#preview").css('display', 'none');
+                $("body").removeClass("dialogIsOpen");
+            }
         }
     });
+    //$(document).mouseup(function (e) {
+    //    var container = $("#modal-container");
+    //    var preview = $('#preview');
+    //    var previewText = $('#preview-text');
+    //    if ((!preview.is(e.target) && !previewText.is(e.target) && !container.is(e.target)) // if the target of the click isn't the container...
+    //        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    //    {
+    //        container.hide();
+    //        $("#preview").css('display', 'none');
+    //        $("body").removeClass("dialogIsOpen");
+    //    }
+    //});
 
 
     function checkType(type) {
@@ -93,6 +107,7 @@ $(document).ready(function () {
         }
 
     }
+
     function createRadius() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
@@ -124,8 +139,12 @@ $(document).ready(function () {
             $('#txtarea').append(partTwo);
             $("#preview").css('display', 'block');
             $("#preview").css('border-radius', $(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px");
-        })
+
+            addNameField();
+            addSaveButton('BorderRadius');
+        });
     }
+
     function createBoxShadow() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
@@ -171,8 +190,12 @@ $(document).ready(function () {
             $('#txtarea').append(partTwo);
             $("#preview").css('display', 'block');
             $("#preview").css('box-shadow', appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val());
-        })
+
+            addNameField();
+            addSaveButton('BoxShadow');
+        });
     }
+
     function textShadow() {
         $(".modal-backdrop").css('display', 'block');
         $("#modal-container").css('display', 'block');
@@ -203,10 +226,9 @@ $(document).ready(function () {
             $('#txtarea').append(partOne);
             $("#preview").css('display', 'block');
             $("#preview").css('text-shadow', $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".hex-color").val());
-        })
 
-
-
+            addSaveButton('TextShadow');
+        });
     }
 
     function rgba() {
@@ -241,8 +263,12 @@ $(document).ready(function () {
             $("#preview").css('display', 'block');
             $("#preview").css('text-decoration', 'bold');
             $("#preview").css('background-color', 'rgba(' + $('.r').val() + ', ' + $('.g').val() + ', ' + $('.b').val() + ', ' + $('.opacity').val() + ')');
-        })
+
+            addNameField();
+            addSaveButton('RGBA');
+        });
     }
+
     function fontFace() {
         $('.modal-backdrop').css('display', 'block');
         $('#modal-container').css('display', 'block');
@@ -273,6 +299,9 @@ $(document).ready(function () {
             $('#txtarea').append(thridLine);
             $('#txtarea').append(fourth);
             $('#txtarea').append(fifth);
+
+            addNameField();
+            addSaveButton('FontFace');
         })
     }
 
@@ -313,8 +342,9 @@ $(document).ready(function () {
             $('.textPreview').css('column-count', $('.numbColumns').val());
             $('.textPreview').css('column-gap', $('.gap').val() + "px");
 
+            addNameField();
+            addSaveButton('MultipleColumns');
         })
-
     }
 
     function boxResize() {
@@ -351,6 +381,9 @@ $(document).ready(function () {
             $("#preview").css('resize', $(".resizeType").val());
             $("#preview").css('width', $('.minWidth').val() + 'px');
             $("#preview").css('height', $('.minHeight').val() + 'px');
+
+            addNameField();
+            addSaveButton('BoxResize');
         })
 
     }
@@ -382,6 +415,9 @@ $(document).ready(function () {
                 $('#txtarea').empty();
             }
             $('#txtarea').append(firstLine);
+
+            addNameField();
+            addSaveButton('BoxSizing');
         })
     }
 
@@ -415,6 +451,8 @@ $(document).ready(function () {
             $('#txtarea').append(firstLine);
 
             $("#preview").attr('style', 'display: block; outline-offset:' + $('.outlineOffset').val() + 'px ;' + 'outline: ' + $('.hex-color').val() + ' ' + $('.outlineType').val() + ' ' + $('.outlineThickness').val() + 'px');
+            addNameField()
+            addSaveButton('Outline');
 
         })
     }
@@ -458,8 +496,8 @@ $(document).ready(function () {
                 $(this).css('display', 'block');
                 $(this).css('transition', 'all 500ms ease');
             });
-
-
+            addNameField();
+            addSaveButton('Transition');
         })
     }
 
@@ -492,9 +530,39 @@ $(document).ready(function () {
             $('#txtarea').append(line);
             $("#preview").css('display', 'block');
             $('#preview').css('top', '76%')
-            $('#preview').attr('style','display:block;top:76%;'+"transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);");
+            $('#preview').attr('style', 'display:block;top:76%;' + "transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);");
 
+            addNameField();
+            addSaveButton('Transform');
+        })
+    }
 
+    function addNameField() {
+        var nameField = "<label style='display: block'>Style Name: </label>&nbsp;<input class='text-info style-name' type='text'></br>";
+        $(".modelContentBody").append(nameField);
+    }
+
+    function addSaveButton(type) {
+        var saveButton = "<button type='button' class='btn btn-default save'>Save</button>";
+        $(".modelContentBody").append(saveButton);
+        $('.save').on('click', function () {
+            saveStyle({
+                name: $('.style-name').val(),
+                type: type
+            });
+        })
+    }
+
+    function saveStyle(options) {
+        $.ajax({
+            method: 'POST',
+            url: '/styles/add',
+            data: {
+                _token: $('meta[name=csrf-token]').attr('content'),
+                name: options.name,
+                type: options.type,
+                code: $('textarea').text()
+            }
         })
     }
 

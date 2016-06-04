@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Team ROOKIE">
+    <meta name="csrf-token" content="{{ Session::token() }}">
 
     <title>CSS3 Generator - Team ROOKIE Product</title>
 
@@ -37,8 +38,9 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right" id="adminHeader">
-                    <li><a href="admin/login.html">Login</a></li>
-                    <li><a href="view-panel.html">View Saved Styles</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/styles">View Saved Styles</a></li>
                 </ul>
             </div>
         </div>
@@ -50,8 +52,6 @@
         </br>
         </br>
         </br>
-
-
     </div>
 </div>
 
