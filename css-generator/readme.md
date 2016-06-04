@@ -1,3 +1,14 @@
+# Installation
+
+1. Create a mysql database and name it.
+2. Edit .env and config/database.php file with:
+    1. The correct url connection string
+    2. The name of the database
+    3. The correct username and password
+3. In your database manager execute the .sql script to create the needed tables
+4. Open the application folder with a terminal/console and type **php artisan serve**
+    - This creates a local server on **[localhost:8000]**
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
