@@ -5,9 +5,11 @@
     1. The correct url connection string
     2. The name of the database
     3. The correct username and password
-3. In your database manager execute the .sql script to create the needed tables
-4. Open the application folder with a terminal/console and type **php artisan serve**
-    - This creates a local server on your [localhost with port 8000](http://localhost:8000/)
+3. Open the application folder with a terminal/console and type
+    1. **php artisan migrate**
+        - This creates the needed tables in your database
+    2. **php artisan serve**
+        - This creates a local server on your [localhost with port 8000](http://localhost:8000/)
 
 # Laravel PHP Framework
 
