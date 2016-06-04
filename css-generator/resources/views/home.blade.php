@@ -151,7 +151,7 @@
 
     <div id="footer">
         <div class="container">
-            <p>Copyright &copy; Бате Светльо is BACK!</p>
+            <p>Copyright &copy; Team Rookies</p>
         </div>
     </div>
     <!-- Footer -->
