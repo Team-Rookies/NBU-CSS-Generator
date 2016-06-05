@@ -146,7 +146,7 @@ $(document).ready(function () {
             $("#preview").css('box-shadow', appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val());
 
             if (!hasSave) {
-
+                hasSave = true;
                 addNameField();
                 addSaveButton('BoxShadow');
             }
@@ -175,8 +175,11 @@ $(document).ready(function () {
             $("#preview").show();
             $("#preview").css('text-shadow', $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".hex-color").val());
 
-            addNameField();
-            addSaveButton('TextShadow');
+            if (!hasSave) {
+                hasSave = true;
+                addNameField();
+                addSaveButton('TextShadow');
+            }
         });
     }
 
@@ -204,6 +207,7 @@ $(document).ready(function () {
             $("#preview").css('background-color', 'rgba(' + $('.r').val() + ', ' + $('.g').val() + ', ' + $('.b').val() + ', ' + $('.opacity').val() + ')');
 
             if (!hasSave) {
+                hasSave = true;
                 addNameField();
                 addSaveButton('RGBA');
             }
@@ -232,6 +236,7 @@ $(document).ready(function () {
             $('#txtarea').append('&#9;url("' + $('.fontName').val() + '.ttf") format("truetype"),' + newline + "}");
 
             if (!hasSave) {
+                hasSave = true;
                 addNameField();
                 addSaveButton('FontFace');
             }
@@ -265,6 +270,7 @@ $(document).ready(function () {
             $('.textPreview').css('column-gap', $('.gap').val() + "px");
 
             if (!hasSave) {
+                hasSave = true;
                 addNameField();
                 addSaveButton('MultipleColumns');
             }
@@ -297,6 +303,7 @@ $(document).ready(function () {
             $("#preview").css('height', $('.minHeight').val() + 'px');
 
             if (!hasSave) {
+                hasSave = true;
                 addNameField();
                 addSaveButton('BoxResize');
             }
@@ -321,6 +328,7 @@ $(document).ready(function () {
             $('#txtarea').append("-moz-box-sizing: "+$('.sizingType').val()+";" + newline + "-webkit-box-sizing: "+$('.sizingType').val()+";" + newline + "box-sizing: "+ $('.sizingType').val() + ";");
 
             if (!hasSave) {
+                hasSave = true;
                 addNameField();
                 addSaveButton('BoxSizing');
             }
@@ -358,6 +366,7 @@ $(document).ready(function () {
 
             $("#preview").attr('style', 'display: block; outline-offset:' + $('.outlineOffset').val() + 'px ;' + 'outline: ' + $('.hex-color').val() + ' ' + $('.outlineType').val() + ' ' + $('.outlineThickness').val() + 'px');
             if (!hasSave) {
+                hasSave = true;
                 addNameField()
                 addSaveButton('Outline');
             }
@@ -398,6 +407,7 @@ $(document).ready(function () {
             });
 
             if (!hasSave) {
+                hasSave = true;
                 addNameField();
                 addSaveButton('Transition');
             }
@@ -427,6 +437,7 @@ $(document).ready(function () {
             $('#preview').attr('style', 'display:block;top:76%;' + "transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);");
 
             if (!hasSave) {
+                hasSave = true;
                 addNameField();
                 addSaveButton('Transform');
             }
