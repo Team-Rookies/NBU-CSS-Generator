@@ -15,8 +15,9 @@
                 padding: 0;
                 width: 100%;
                 display: table;
-                font-weight: 100;
-                font-family: 'Lato';
+                /*font-weight: 500;*/
+                font-family: 'Lato', Sans-Serif;
+                font-weight: bold;
             }
 
             .container {
@@ -30,8 +31,12 @@
                 display: inline-block;
             }
 
-            .title {
-                font-size: 96px;
+            #login {
+                float: right;
+            }
+
+            #register {
+                float:left;
             }
         </style>
     </head>
@@ -54,7 +59,10 @@
                             <input type="password" name="password" id="password" required="required"/>
                         </p>
                     </div>
-                    <input type="submit" class="button white" value="Login" />
+                    <a href="/register" id="register" >
+                        <input type="button" class="button white" value="Register" />
+                    </a>
+                    <input id="login" type="submit" class="button white" value="Login" />
                 {!! Form::close() !!}
             </div>
         </div>

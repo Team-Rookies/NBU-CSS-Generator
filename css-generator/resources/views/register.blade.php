@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,15 +32,32 @@
                 display: inline-block;
             }
 
-            .title {
-                font-size: 96px;
+            .row {
+                height: 20px;
+            }
+
+            label {
+                float: left;
+                /*text-align: left;*/
+            }
+
+            input[type="text"], input[type="password"] {
+                float: right;
+            }
+
+            #register {
+                float: right;
+            }
+
+            #login {
+                float:left;
             }
         </style>
     </head>
     <body>
         <div class="container">
         @foreach($errors->all() as $error)
-        <p>{{$error}}</p>
+            <p>{{$error}}</p>
         @endforeach
             <div class="content">
                 {!! Form::open(['url'=>'/register', 'id'=>'register_form']) !!}
@@ -60,7 +79,12 @@
                             <input type="password" name="password-repeat" id="password-repeat" required="required"/>
                         </p>
                     </div>
-                    <input type="submit" class="button white" value="Register" />
+                    <div class="row" style="margin-top: 10px">
+                        <input type="submit" id="register" class="button white" value="Register" />
+                        <a href="/login" id="login">
+                            <input type="button" class="button white" value="Login"/>
+                        </a>
+                    </div>
                 {!! Form::close() !!}
             </div>
         </div>

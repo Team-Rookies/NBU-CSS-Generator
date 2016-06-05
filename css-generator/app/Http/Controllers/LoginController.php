@@ -16,6 +16,9 @@ class LoginController extends Controller
 {
     public function getLogin()
     {
+        if (\Auth::check()) {
+            return Redirect::to('/');
+        }
         return view('login');
     }
 
@@ -36,6 +39,9 @@ class LoginController extends Controller
 
     public function getRegister()
     {
+        if (\Auth::check()) {
+            return Redirect::to('/');
+        }
         return view('register');
     }
 
