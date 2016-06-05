@@ -307,30 +307,18 @@ $(document).ready(function () {
     function boxSizing() {
         $(".modal-backdrop").show();
         $("#modal-container").show();
-        var modalHead = "Generate Box Sizing CSS";
-        var sizingType = "<b>Box Sizing: </b><select class='sizingType' name='type'><option value='none'>NONE</option><option value='content-box'>Content Box</option><option value='border-box'>Border Box</option></select></br>";
-        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
-        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
-        $('.modal-head-h3').append(modalHead);
-        $('.modelContentBody').append(sizingType);
-        $(".modelContentBody").append(generateButton);
-        $(".modelContentBody").append(txtArea);
+        $('.modal-head-h3').append("Generate Box Sizing CSS");
+        $('.modelContentBody').append("<b>Box Sizing: </b><select class='sizingType' name='type'><option value='none'>NONE</option><option value='content-box'>Content Box</option><option value='border-box'>Border Box</option></select></br>");
+        $(".modelContentBody").append("<button type='button' class='btn btn-default generate'>GO</button>");
+        $(".modelContentBody").append("<textarea id='txtarea' rows='10' cols='50' disabled></textarea>");
         $("body").toggleClass("dialogIsOpen");
 
         $('.generate').click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
-
-            if ($('.sizingType').val() == "content-box") {
-                var firstLine = "-moz-box-sizing: content-box;" + newline + "-webkit-box-sizing: content-box;" + newline + "box-sizing: content-box;";
-            } else if ($('.sizingType').val() == "border-box") {
-                var firstLine = "-moz-box-sizing: border-box;" + newline + "-webkit-box-sizing: border-box;" + newline + "box-sizing: border-box;";
-            } else {
-                $('#txtarea').empty();
-            }
-            $('#txtarea').append(firstLine);
+            $('#txtarea').append("-moz-box-sizing: "+$('.sizingType').val()+";" + newline + "-webkit-box-sizing: "+$('.sizingType').val()+";" + newline + "box-sizing: "+ $('.sizingType').val() + ";");
 
             if (!hasSave) {
                 addNameField();
@@ -380,29 +368,21 @@ $(document).ready(function () {
     function transition() {
         $(".modal-backdrop").show();
         $("#modal-container").show();
-        var modalHead = "Generate Transiotion CSS";
-        var duration = "<label>Duration: </label>&nbsp;<input class='duration' type='number'>&nbsp;Milliseconds</br>";
-        var property = "<b>Property: </b><select class='property' name='type'><option value='all'>All</option><option value='background'>Background</option><option value='color'>Color</option><option value='height'>Height</option><option value='width'>Width</option><option value='outline'>Outline</option></select></br>";
-        var cssfunction = "<b>Function: </b><select class='cssfunction' name='type'><option value='ease'>Ease</option><option value='linear'>Linear</option><option value='ease-in'>Ease-In</option><option value='ease-out'>Ease-Out</option><option value='ease-in-out'>Ease-In-Out</option><option value='outline'>Outline</option></select></br>";
-        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
-        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
-        $('.modal-head-h3').append(modalHead);
-        $('.modelContentBody').append(property);
-        $('.modelContentBody').append(duration);
-        $('.modelContentBody').append(cssfunction);
-        $(".modelContentBody").append(generateButton);
-        $(".modelContentBody").append(txtArea);
+        $('.modal-head-h3').append("Generate Transiotion CSS");
+        $('.modelContentBody').append("<b>Property: </b><select class='property' name='type'><option value='all'>All</option><option value='background'>Background</option><option value='color'>Color</option><option value='height'>Height</option><option value='width'>Width</option><option value='outline'>Outline</option></select></br>");
+        $('.modelContentBody').append("<label>Duration: </label>&nbsp;<input class='duration' type='number'>&nbsp;Milliseconds</br>");
+        $('.modelContentBody').append("<b>Function: </b><select class='cssfunction' name='type'><option value='ease'>Ease</option><option value='linear'>Linear</option><option value='ease-in'>Ease-In</option><option value='ease-out'>Ease-Out</option><option value='ease-in-out'>Ease-In-Out</option><option value='outline'>Outline</option></select></br>");
+        $(".modelContentBody").append("<button type='button' class='btn btn-default generate'>GO</button>");
+        $(".modelContentBody").append("<textarea id='txtarea' rows='10' cols='50' disabled></textarea>");
         $("body").toggleClass("dialogIsOpen");
 
         $('.generate').click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
-
-            var line = "-webkit-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "-moz-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "-ms-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "-o-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";";
-            $('#txtarea').append(line);
-            $("#preview").css('display', 'block');
+            $('#txtarea').append("-webkit-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "-moz-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "-ms-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "-o-transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";" + newline + "transition: " + $('.property').val() + " " + $('.duration').val() + "ms " + $('.cssfunction').val() + ";");
+            $("#preview").show();
 
             $("#preview").hover(function () {
                 $(this).css("background-color", "black");
@@ -427,31 +407,22 @@ $(document).ready(function () {
     function transform() {
         $(".modal-backdrop").show();
         $("#modal-container").show();
-        var modalHead = "Generate Transform CSS";
-        var scale = "<label>Scale: </label>&nbsp;<input class='scale' type='number'></br>";
-        var rotate = "<label>Rotate: </label>&nbsp;<input class='rotate' type='number'> degree</br>";
-        var translate = "<label>Translate: </label>&nbsp;<input class='translate1' type='number'>px <input class='translate2' type='number'>px</br>";
-        var skew = "<label>Skew: </label>&nbsp;<input class='skew1' type='number'>degree <input class='skew2' type='number'>degree</br>";
-        var generateButton = "<button type='button' class='btn btn-default generate'>GO</button>";
-        var txtArea = "<textarea id='txtarea' rows='10' cols='50' disabled></textarea>";
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
-        $('.modal-head-h3').append(modalHead);
-        $('.modelContentBody').append(scale);
-        $('.modelContentBody').append(rotate);
-        $('.modelContentBody').append(translate);
-        $('.modelContentBody').append(skew);
-        $(".modelContentBody").append(generateButton);
-        $(".modelContentBody").append(txtArea);
+        $('.modal-head-h3').append("Generate Transform CSS");
+        $('.modelContentBody').append("<label>Scale: </label>&nbsp;<input class='scale' type='number'></br>");
+        $('.modelContentBody').append("<label>Rotate: </label>&nbsp;<input class='rotate' type='number'> degree</br>");
+        $('.modelContentBody').append("<label>Translate: </label>&nbsp;<input class='translate1' type='number'>px <input class='translate2' type='number'>px</br>");
+        $('.modelContentBody').append("<label>Skew: </label>&nbsp;<input class='skew1' type='number'>degree <input class='skew2' type='number'>degree</br>");
+        $(".modelContentBody").append("<button type='button' class='btn btn-default generate'>GO</button>");
+        $(".modelContentBody").append("<textarea id='txtarea' rows='10' cols='50' disabled></textarea>");
         $("body").toggleClass("dialogIsOpen");
 
         $('.generate').click(function () {
             $('#txtarea').empty();
             var newline = String.fromCharCode(13, 10);
-
-            var line = "-moz-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + newline + "-webkit-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + "-o-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + newline + "-ms-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + newline + "transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);";
-            $('#txtarea').append(line);
-            $("#preview").css('display', 'block');
+            $('#txtarea').append("-moz-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + newline + "-webkit-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + "-o-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + newline + "-ms-transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);" + newline + "transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);");
+            $("#preview").show();
             $('#preview').css('top', '76%')
             $('#preview').attr('style', 'display:block;top:76%;' + "transform: scale(" + $('.scale').val() + ") rotate(" + $('.rotate').val() + "deg) translateX(" + $('.translate1').val() + "px) skewX(" + $('.skew1').val() + "deg) skewy(" + $('.skew2').val() + "deg);");
 
