@@ -31,21 +31,39 @@
                     <th>Del</th>
                     <th>Type</th>
                     <th>Code</th>
+                    <th>Preview</th>
                 </tr>
                  @foreach($styles as $style)
                  <tr>
                  <td>{{$style->name}}</td>
                  <td><a href="styles/delete/{{$style->id}}">[X]</a></td>
-                 <td>{{$style->type}}</td>
-                 <td>{{$style->code}}</td>
+                 <td class={{$style->id}}>{{$style->type}}</td>
+                 <td class='tablecode' id={{$style->id}}>{{$style->code}}</td>
+                 <td class='tableclick' styleid={{$style->id}}>Click</td>
                  </tr>
                  @endforeach
             </thead>
 
         </table>
-
+        
     </div>
 </div>
+
+<div>
+    <div id="modal-container">
+        <div class="model-dialog">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true">&times;</button>
+                <h3 class="modal-head-h3"></h3>
+            </div>
+            <div class="modal-body modelContentBody " style="height: 550px"></div>
+        </div>
+    </div>
+ </div>
+  <div id="preview">
+        <h3 id="preview-text">PREVIEW</h3>
+  </div>
+
 
 <hr>
 @endsection

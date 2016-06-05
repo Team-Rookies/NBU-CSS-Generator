@@ -6,7 +6,7 @@ $(document).ready(function () {
             event.stopPropagation();
             var element = $(this);
             var type = element.attr('type-modal');
-            if (flag == false) {
+            if (!flag) {
                 flag = true;
                 checkType(type);
             }
