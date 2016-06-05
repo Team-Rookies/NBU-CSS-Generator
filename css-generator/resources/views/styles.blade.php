@@ -68,17 +68,17 @@
                 <h1 class="page-header">View Saved Styles</h1>
             </div>
             <ul class="nav nav-tabs">:
-                <li><a class="viehandler" viewstyle="radius" href="#">Radius</a></li>
-                <li><a class="viehandler" viewstyle="shadow" href="#">Shadow</a></li>
-                <li><a class="viehandler" viewstyle="text-shadow" href="#">Text Shadow</a></li>
-                <li><a class="viehandler" viewstyle="rgba" href="#">RGBA</a></li>
-                <li><a class="viehandler" viewstyle="font-face" href="#">Font-Face</a></li>
-                <li><a class="viehandler" viewstyle="multiple-columns" href="#">Multiple Columns</a></li>
-                <li><a class="viehandler" viewstyle="box-resize" href="#">Box Resize</a></li>
-                <li><a class="viehandler" viewstyle="box-resizing" href="#">Box-Sizing</a></li>
-                <li><a class="viehandler" viewstyle="outline" href="#">Outline</a></li>
-                <li><a class="viehandler" viewstyle="transition" href="#">Transition</a></li>
-                <li><a class="viehandler" viewstyle="transform" href="#">Transform</a></li>
+                <li><a class="viehandler" viewstyle="radius" href="/styles/BorderRadius">Radius</a></li>
+                <li><a class="viehandler" viewstyle="shadow" href="/styles/BoxShadow">Shadow</a></li>
+                <li><a class="viehandler" viewstyle="text-shadow" href="/styles/TextShadow">Text Shadow</a></li>
+                <li><a class="viehandler" viewstyle="rgba" href="/styles/RGBA">RGBA</a></li>
+                <li><a class="viehandler" viewstyle="font-face" href="/styles/FontFace">Font-Face</a></li>
+                <li><a class="viehandler" viewstyle="multiple-columns" href="/styles/MultipleColumns">Multiple Columns</a></li>
+                <li><a class="viehandler" viewstyle="box-resize" href="/styles/BoxResize">Box Resize</a></li>
+                <li><a class="viehandler" viewstyle="box-resizing" href="/styles/BoxSizing">Box-Sizing</a></li>
+                <li><a class="viehandler" viewstyle="outline" href="/styles/Outline">Outline</a></li>
+                <li><a class="viehandler" viewstyle="transition" href="/styles/Transition">Transition</a></li>
+                <li><a class="viehandler" viewstyle="transform" href="/styles/Transform">Transform</a></li>
                 <li><a class="viehandler" viewstyle="nothing" href="#">Nothing</a></li>
             </ul>
             </br>
@@ -117,6 +117,7 @@
         </div>
         <!-- Footer -->
 
+</div>
 </body>
 
 </html>

@@ -24,6 +24,7 @@ Route::get('/logout', 'LoginController@getLogout');
 Route::get('/styles/add', 'StyleController@showAddStyle');
 Route::post('/styles/add', 'StyleController@postStyle');
 Route::get('/styles', 'StyleController@getStyles');
+Route::get('/styles/{style}', 'StyleController@getStylesOfType');
 Route::get('/styles/delete/{id}', 'StyleController@deleteStyle');
 
 Route::get('/', function () {

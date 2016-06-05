@@ -15,10 +15,18 @@ use Response;
 class StyleController extends Controller
 {
 
-    public function getStyles()
+    public function getStyles() {
+        if(\Auth::check()) {
+                return view('styles', ['styles' => Style::where('user_id', \Auth::user()->id)->get()]);
+        } else {
+            return Redirect::to('login')->withErrors('You must be logged in to perform this action');
+        }
+    }
+
+    public function getStylesOfType($type)
     {
         if(\Auth::check()) {
-            return view('styles', ['styles' => Style::where('user_id', \Auth::user()->id)->get()]);
+            return view('styles', ['styles' => Style::where(['user_id' => \Auth::user()->id, 'type' => $type])->get()]);
         } else {
             return Redirect::to('login')->withErrors('You must be logged in to perform this action');
         }
