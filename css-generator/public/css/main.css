@@ -29,7 +29,7 @@
     margin-left:-300px;
     background-color:white;
     border-radius:5px; 
-    display:none;  
+    display:none;
 }
 
 #preview-saved {
@@ -80,4 +80,19 @@
 
 .dialogIsOpen #main-container {
     -webkit-filter: blur(5px) grayscale(50%);
+}
+
+label.error {
+    float: none;
+    color: red;
+    padding-left: .5em;
+    display: block;
+}
+
+#topLeft, #topRight, #bottomLeft, #bottomRight {
+    display: block;
+}
+
+.inputField {
+    display: block;
 }

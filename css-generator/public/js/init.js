@@ -99,7 +99,6 @@ $(document).ready(function () {
 
                         if (!hasSave) {
                             hasSave = true;
-                            addNameField();
                             addSaveButton('BorderRadius');
                         }
                     } else {
@@ -115,40 +114,37 @@ $(document).ready(function () {
     }
 
     function createBoxShadow() {
-        $("#modal-container").show();
         $(".modelContentBody").empty();
-        $('.modal-head-h3').empty();
-        $('.modal-head-h3').append("Generate Box Shadow CSS");
-        $(".modelContentBody").append("Inset: &nbsp;<input class='inset' type='checkbox'></br>");
-        $(".modelContentBody").append("Horizontal Length &nbsp;<input class='horizontal-length' type='number'><label>&nbsp; px</label></br>");
-        $(".modelContentBody").append("Vertical Length &nbsp;<input class='vertical-length' type='number'><label>&nbsp; px</label></br>");
-        $(".modelContentBody").append("Blur Radius &nbsp;<input class='blur-radius' type='number'><label>&nbsp; px</label></br>");
-        $(".modelContentBody").append("Spread &nbsp;<input class='spread' type='number'><label>&nbsp; px</label></br>");
-        $(".modelContentBody").append("Hex Color &nbsp;<input class='hex-color' type='text'>");
-        $(".modelContentBody").append("<textarea id='txtarea' rows='10' cols='50' disabled></textarea>");
-        $(".modelContentBody").append("<button type='button' class='btn btn-default generate'>GO</button>");
-        $('.hex-color').hexColorPicker();
-        $('#txtarea').css('bottom', '-28px');
-        $("body").toggleClass("dialogIsOpen");
+        $("#modal-container").show();
+        $('.modal-head-h3').text("Generate Box Shadow CSS");
+        $(".modelContentBody").load('templates/boxShadow.html', function() {
+            $('.hex-color').hexColorPicker();
+            $('#txtarea').css('bottom', '-28px');
+            $("body").toggleClass("dialogIsOpen");
+            $(".generate").click(function (ev) {
+                ev.preventDefault();
+                if($('#boxShadowForm').valid()) {
+                    $('#txtarea').empty();
+                    var inset = $('.inset').val();
+                    var appInset = "";
+                    if ($('.inset').prop('checked')) {
+                        appInset = "inset "
+                    }
+                    $('#txtarea').append("-webkit-box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val() + ";");
+                    $('#txtarea').append(String.fromCharCode(13, 10));
+                    $('#txtarea').append("box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val() + ";");
+                    $("#preview").css('display', 'block');
+                    $("#preview").css('box-shadow', appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val());
 
-        $(".generate").click(function () {
-            $('#txtarea').empty();
-            var inset = $('.inset').val();
-            var appInset = "";
-            if ($('.inset').prop('checked')) {
-                appInset = "inset "
-            }
-            $('#txtarea').append("-webkit-box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val() + ";");
-            $('#txtarea').append(String.fromCharCode(13, 10));
-            $('#txtarea').append("box-shadow:" + appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val() + ";");
-            $("#preview").css('display', 'block');
-            $("#preview").css('box-shadow', appInset + $(".horizontal-length").val() + "px " + $(".vertical-length").val() + "px " + $(".blur-radius").val() + "px " + $(".spread").val() + "px " + $(".hex-color").val());
-
-            if (!hasSave) {
-                hasSave = true;
-                addNameField();
-                addSaveButton('BoxShadow');
-            }
+                    if (!hasSave) {
+                        hasSave = true;
+                        addSaveButton('BoxShadow');
+                    }
+                } else {
+                    hasSave = false;
+                    $('#saveField').remove();
+                }
+            });
         });
     }
 
