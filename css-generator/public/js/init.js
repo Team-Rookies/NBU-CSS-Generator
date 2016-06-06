@@ -15,7 +15,6 @@ $(document).ready(function () {
     });
 
     $('.close').on('click', function () {
-        $(".modal-backdrop").css('display', 'none');
         $("#modal-container").css('display', 'none');
         $("#preview").removeAttr('style');
         $("#preview").css('display', 'none');
@@ -86,36 +85,36 @@ $(document).ready(function () {
     }
 
     function createRadius() {
-        $(".modal-backdrop").show();
-        $("#modal-container").show();
         $(".modelContentBody").empty();
-        $('.modal-head-h3').empty();
-        $('.modal-head-h3').append("Generate Border Radius CSS");
-        $(".modelContentBody").append("Top Left &nbsp;<input class='topLeft' type='number'><label>&nbsp; px</label></br>");
-        $(".modelContentBody").append("Top Right &nbsp;<input class='topRight' type='number'><label>&nbsp; px</label></br>");
-        $(".modelContentBody").append("Bottom Left &nbsp;<input class='bottomLeft' type='number'><label>&nbsp; px</label></br>");
-        $(".modelContentBody").append("Bottom Right &nbsp;<input class='bottomRight' type='number'><label>&nbsp; px</label></br>");
-        $(".modelContentBody").append("<textarea id='txtarea' rows='10' cols='50' disabled></textarea>");
-        $(".modelContentBody").append("<button type='button' class='btn btn-default generate'>GO</button>");
+        $("#modal-container").show();
+        $('.modal-head-h3').text("Generate Border Radius CSS");
+        $('.modelContentBody').load('templates/borderRadius.html', function() {
+                $(".generate").click(function (ev) {
+                    ev.preventDefault();
+                    if($('#borderRadiusForm').valid()) {
+                        var code = "-webkit-border-radius:" + $(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px;" + String.fromCharCode(13, 10) + "border-radius:" + $('.topLeft').val() + 'px ' + $('.topRight').val() + 'px ' + $('.bottomLeft').val() + 'px ' + $('.bottomRight').val() + 'px;';
+                        $('#txtarea').text(code);
+                        $("#preview").show();
+                        $("#preview").css('border-radius', $(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px");
+
+                        if (!hasSave) {
+                            hasSave = true;
+                            addNameField();
+                            addSaveButton('BorderRadius');
+                        }
+                    } else {
+                        hasSave = false;
+                        $('#saveField').remove();
+                    }
+                });
+            });
+
         $("body").toggleClass("dialogIsOpen");
 
-        $(".generate").click(function () {
-            $('#txtarea').empty();
 
-            $('#txtarea').append("-webkit-border-radius:" + $(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px;" + String.fromCharCode(13, 10) + "border-radius:" + $('.topLeft').val() + 'px ' + $('.topRight').val() + 'px ' + $('.bottomLeft').val() + 'px ' + $('.bottomRight').val() + 'px;');
-            $("#preview").show()
-            $("#preview").css('border-radius', $(".topLeft").val() + "px " + $(".topRight").val() + "px " + $(".bottomLeft").val() + "px " + $(".bottomRight").val() + "px");
-
-            if (!hasSave) {
-                hasSave = true;
-                addNameField();
-                addSaveButton('BorderRadius');
-            }
-        });
     }
 
     function createBoxShadow() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
@@ -154,7 +153,6 @@ $(document).ready(function () {
     }
 
     function textShadow() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
@@ -184,7 +182,6 @@ $(document).ready(function () {
     }
 
     function rgba() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
@@ -215,7 +212,6 @@ $(document).ready(function () {
     }
 
     function fontFace() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
@@ -244,7 +240,6 @@ $(document).ready(function () {
     }
 
     function multipleColumns() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
@@ -278,7 +273,6 @@ $(document).ready(function () {
     }
 
     function boxResize() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
@@ -312,7 +306,6 @@ $(document).ready(function () {
     }
 
     function boxSizing() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
@@ -336,7 +329,6 @@ $(document).ready(function () {
     }
 
     function outline() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         var modalHead = "Generate Outline Offset CSS";
         var outlineThickness = "<label>Outline Thickness: </label>&nbsp;<input class='outlineThickness' type='number'>&nbsp;px</br>";
@@ -375,7 +367,6 @@ $(document).ready(function () {
     }
 
     function transition() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
@@ -415,7 +406,6 @@ $(document).ready(function () {
     }
 
     function transform() {
-        $(".modal-backdrop").show();
         $("#modal-container").show();
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
@@ -445,13 +435,17 @@ $(document).ready(function () {
     }
 
     function addNameField() {
-        var nameField = "<label style='display: block'>Style Name: </label>&nbsp;<input class='text-info style-name' type='text'></br>";
-        $(".modelContentBody").append(nameField);
+
+        //$(".modelContentBody").append(nameField);
     }
 
     function addSaveButton(type) {
+        var div = $("<div>").attr('id', 'saveField');
+        var nameField = "<label style='display: block'>Style Name: </label>&nbsp;<input class='text-info style-name' type='text'></br>";
         var saveButton = "<button type='button' class='btn btn-default save'>Save</button>";
-        $(".modelContentBody").append(saveButton);
+        div.append(nameField);
+        div.append(saveButton);
+        $(".modelContentBody").append(div);
         $('.save').on('click', function () {
             saveStyle({
                 name: $('.style-name').val(),

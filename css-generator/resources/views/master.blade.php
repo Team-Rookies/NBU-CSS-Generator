@@ -24,6 +24,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{asset('js/init.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/view.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.validate.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/hex-colorpicker/src/jquery-hex-colorpicker.js')}}" type="text/javascript"></script>
 
 </head>
