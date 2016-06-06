@@ -60,12 +60,17 @@ class LoginController extends Controller
 
         $creds = [
             'name'=>Input::get('name'),
-            'password'=>Input::get('password')
+            'password'=>Hash::make(Input::get('password'))
         ];
 
         User::create($creds);
 
-        if(Auth::attempt($creds)) {
+        $login = [
+            'name'=>Input::get('name'),
+            'password'=>Input::get('password')
+        ];
+
+        if(Auth::attempt($login)) {
             return Redirect::to('/');
         } else {
             return Redirect::to('login');
