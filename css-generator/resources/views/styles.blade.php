@@ -36,7 +36,7 @@
                  @foreach($styles as $style)
                  <tr>
                  <td>{{$style->name}}</td>
-                 <td><a href="styles/delete/{{$style->id}}">[X]</a></td>
+                 <td><a href="/styles/delete/{{$style->id}}">[X]</a></td>
                  <td class={{$style->id}}>{{$style->type}}</td>
                  <td class='tablecode' id={{$style->id}}>{{$style->code}}</td>
                  <td class='tableclick' styleid={{$style->id}}>Click</td>

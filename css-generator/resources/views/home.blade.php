@@ -50,7 +50,7 @@
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
             <button type="button" class="btn btn-default handler" type-modal="box-resizing">
-                Box Resizing
+                Box-Sizing
             </button>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">

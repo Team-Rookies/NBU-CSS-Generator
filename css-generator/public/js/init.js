@@ -220,7 +220,7 @@ $(document).ready(function () {
         $(".modelContentBody").empty();
         $('.modal-head-h3').empty();
         $('.modal-head-h3').append("Generate Font-Face CSS");
-        $('.modelContentBody').append("<label>Font Face</label>&nbsp;<input class='fontFamily' type='text'></br>");
+        $('.modelContentBody').append("<label>Font Family</label>&nbsp;<input class='fontFamily' type='text'></br>");
         $('.modelContentBody').append("<label>Font Face</label>&nbsp;<input class='fontName' type='text'></br>");
         $(".modelContentBody").append("<textarea id='txtarea' rows='10' cols='50' disabled></textarea>");
         $(".modelContentBody").append("<button type='button' class='btn btn-default generate'>GO</button>");
