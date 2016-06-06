@@ -8,7 +8,7 @@
 # Installation
 
 1. Install PHP 5.5.9
-2. Install (Composer)[https://getcomposer.org]
+2. Install [Composer](https://getcomposer.org)
 3. Create a mysql database and name it.
 4. Edit .env.example and config/database.php file with:
     1. The correct url connection string
