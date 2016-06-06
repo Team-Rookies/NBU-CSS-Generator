@@ -36,7 +36,7 @@
                  @foreach($styles as $style)
                  <tr>
                  <td>{{$style->name}}</td>
-                 <td><a href="/styles/delete/{{$style->id}}">[X]</a></td>
+                 <td><a data-id="{{$style->id}}" class="deleteBtn">[X]</a></td>
                  <td class={{$style->id}}>{{$style->type}}</td>
                  <td class='tablecode' id={{$style->id}}>{{$style->code}}</td>
                  <td class='tableclick' styleid={{$style->id}}>Click</td>
@@ -45,6 +45,32 @@
             </thead>
 
         </table>
+        <script>
+        $('.deleteBtn').click(function(ev) {
+        console.log(ev);
+            noty({
+                    text: 'Are you sure?',
+                    type: 'confirm',
+                    dismissQueue: false,
+                    layout: 'center',
+                    theme: 'defaultTheme',
+                    buttons: [
+                {addClass: 'btn btn-primary', text: 'Yes', onClick: function($noty) {
+                    window.location.replace('/styles/delete/' + $(ev.currentTarget).attr('data-id'));
+                    $noty.close();
+                    noty({text: 'Deleted successfully', type: 'success'});
+                  }
+                },
+                {addClass: 'btn btn-danger', text: 'Cancel', onClick: function($noty) {
+                    $noty.close();
+                  }
+                }
+              ]
+
+
+                })
+        })
+        </script>
         
     </div>
 </div>
