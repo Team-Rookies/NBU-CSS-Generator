@@ -32,6 +32,18 @@
     display:none;  
 }
 
+#preview-saved {
+    width: 200px;
+    height: 200px;
+    top: 71%;
+    left: 54%;
+    border-color: red;
+    background-color: white;
+    border: solid;
+    text-align: center;
+    margin: auto;
+}
+
 #preview{
     position: absolute;
     width: 200px;

@@ -50,20 +50,15 @@
 </div>
 
 <div>
-    <div id="modal-container">
+    <div id="modal-container" style="height: 400px">
         <div class="model-dialog">
-            <div class="modal-header">
+            <div class="modal-header" style="height: 30px">
                 <button type="button" class="close" aria-hidden="true">&times;</button>
-                <h3 class="modal-head-h3"></h3>
             </div>
-            <div class="modal-body modelContentBody " style="height: 550px"></div>
+            <div class="modal-body modelContentBody" style="height: 400px"></div>
         </div>
     </div>
- </div>
-  <div id="preview">
-        <h3 id="preview-text">PREVIEW</h3>
-  </div>
-
+</div>
 
 <hr>
 @endsection
