@@ -1,14 +1,26 @@
+# Requirements
+1. PHP >= 5.5.9
+2. OpenSSL PHP Extension
+3. PDO PHP Extension
+4. Mbstring PHP Extension
+5. Tokenizer PHP Extension
+
 # Installation
 
-1. Create a mysql database and name it.
-2. Edit .env and config/database.php file with:
+1. Install PHP 5.5.9
+2. Install (Composer)[https://getcomposer.org]
+3. Create a mysql database and name it.
+4. Edit .env.example and config/database.php file with:
     1. The correct url connection string
     2. The name of the database
     3. The correct username and password
-3. Open the application folder with a terminal/console and type
-    1. **php artisan migrate**
+    4. Rename .env.example to .env
+5. Open the application folder with a terminal/console and type
+    1. **composer install**
+    2. **php artisan migrate**
         - This creates the needed tables in your database
-    2. **php artisan serve**
+    3. **php artisan key:generate**
+    4. **php artisan serve**
         - This creates a local server on your [localhost with port 8000](http://localhost:8000/)
 
 # Laravel PHP Framework
