@@ -77,6 +77,12 @@
     margin-right: auto;
 }
 
+.jumbotron{
+    background-image: url("../img/jumbImg.jpg");
+    background-size: cover;
+    height: 500px;
+    color: white;
+}
 
 .dialogIsOpen #main-container {
     -webkit-filter: blur(5px) grayscale(50%);
