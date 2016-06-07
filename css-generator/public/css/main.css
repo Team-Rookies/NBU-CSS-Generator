@@ -18,8 +18,16 @@
 }
 
 #modal-container{
-    z-index:9999999; 
-    position:absolute;
+    position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+    outline: 0;
     width:600px;
     height:700px;
     box-shadow:0 5px 15px rgba(0,0,0,.5);
@@ -29,7 +37,6 @@
     margin-left:-300px;
     background-color:white;
     border-radius:5px; 
-    display:none;
 }
 
 #preview-saved {
@@ -45,18 +52,24 @@
 }
 
 #preview{
-    position: absolute;
+    position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
     width: 200px;
     height: 200px;
     top: 71%;
     margin-top: -350px;
+    padding-top: 35px;
     left: 54%;
     border-color: red;
     background-color: white;
-    z-index: 9999999;
     border: solid;
     text-align: center;
-    display:none;
 }
 #preview-text{
     padding-top: 60px;
