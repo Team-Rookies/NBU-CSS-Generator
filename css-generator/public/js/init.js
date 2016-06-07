@@ -119,7 +119,6 @@ $(document).ready(function () {
         $('.modal-head-h3').text("Generate Box Shadow CSS");
         $(".modelContentBody").load('templates/boxShadow.html', function() {
             $('.hex-color').hexColorPicker();
-            $('#txtarea').css('bottom', '-28px');
             $("body").toggleClass("dialogIsOpen");
             $(".generate").click(function (ev) {
                 ev.preventDefault();
@@ -437,10 +436,9 @@ $(document).ready(function () {
 
     function addSaveButton(type) {
         var div = $("<div>").attr('id', 'saveField');
-        var nameField = "<label style='display: block'>Style Name: </label>&nbsp;<input class='text-info style-name' type='text'></br>";
-        var saveButton = "<button type='button' class='btn btn-default save'>Save</button>";
+        var nameField = "<div class='col-xs-6' id='saveSection'><label for='style-name'>Enter style name: </label><input id='style-name' class='form-control text-info style-name' type='text'>\n\
+<button type='button' class='btn btn-primary btn-block save'>Save</button></div>";
         div.append(nameField);
-        div.append(saveButton);
         $(".modelContentBody").append(div);
         $('.save').on('click', function () {
             saveStyle({

@@ -13,7 +13,7 @@
     <title>CSS3 Generator - Team ROOKIE Product</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/jquery-hex-colorpicker.css')}}" type="text/css"/>
     <!-- jQuery library -->
@@ -21,11 +21,13 @@
     <!-- Latest compiled JavaScript -->
     <script src="{{asset('js/jquery.noty.packaged.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/top.js')}}" type="text/javascript"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/init.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/view.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/jquery.validate.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/hex-colorpicker/src/jquery-hex-colorpicker.js')}}" type="text/javascript"></script>
+     <script src="{{asset('js/bootstrap-checkbox.js')}}" type="text/javascript"></script>
+   
 
 </head>
 

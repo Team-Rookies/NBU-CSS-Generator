@@ -96,3 +96,13 @@ label.error {
 .inputField {
     display: block;
 }
+.btn-block.generate {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+}
+#saveSection{
+    float: left;
+    padding-top: 50px;
+}

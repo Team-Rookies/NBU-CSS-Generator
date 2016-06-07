@@ -1,12 +1,22 @@
 <form action="" id="borderRadiusForm">
-    <label for="topLeft">Top Left</label>&nbsp;
-    <input id="topLeft" name="topLeft" class='topLeft' type='number' required placeholder="px"/>
-    <label for="topRight">Top Right</label>&nbsp;
-    <input id="topRight" name="topRight" class='topRight' type='number' required placeholder="px"/>
-    <label for="bottomLeft">Bottom Left</label>&nbsp;
-    <input id="bottomLeft" name="bottomLeft" class='bottomLeft' type='number' required placeholder="px"/>
+    <div class="col-xs-3">
+    <label for="topLeft">Top Left</label>
+    <input id="topLeft" name="topLeft" class='form-control topLeft' type='number' required placeholder="px"/>
+    </div>
+    <div class="col-xs-3">
+    <label for="topRight">Top Right</label>
+    <input id="topRight" name="topRight" class='form-control topRight' type='number' required placeholder="px"/>
+    </div>
+    <div class="col-xs-3">
+    <label for="bottomLeft">Bottom Left</label>
+    <input id="bottomLeft" name="bottomLeft" class='form-control bottomLeft' type='number' required placeholder="px"/>
+    </div>
+    <div class="col-xs-3">
     <label for="bottomRight">Bottom Right</label>&nbsp;
-    <input id="bottomRight" name="bottomRight" class='bottomRight' type='number' required placeholder="px"/>
+    <input id="bottomRight" name="bottomRight" class='form-control bottomRight' type='number' required placeholder="px"/>
+    </div>
+    <div id="content">
     <textarea id='txtarea' rows='10' cols='50' disabled></textarea>
-    <button type='submit' class='btn btn-default generate'>GO</button>
+    <button type='submit' class='btn btn-success btn-block generate'>GENERATE</button>
+    </div>
 </form>

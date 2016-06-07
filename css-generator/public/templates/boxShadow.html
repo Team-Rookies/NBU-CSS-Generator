@@ -1,16 +1,40 @@
 <form action="" id="boxShadowForm">
-    <label for="inset">Inset:</label>&nbsp;
-    <input id="inset" class='inset' type='checkbox'></br>
-    <label for="horizontal">Horizontal Length</label>&nbsp;
-    <input id="horizontal" name="horizontal" class='inputField horizontal-length' type='number' required placeholder="px"/>
-    <label for="vertical">Vertical Length</label>&nbsp;
-    <input id="vertical" name="vertical" class='inputField vertical-length' type='number' required placeholder="px"/>
-    <label for="blur">Blur Radius</label>&nbsp;
-    <input id="blur" name="blur" class='inputField blur-radius' type='number' required placeholder="px"/>
-    <label for="spread">Spread</label>&nbsp;
-    <input id="spread" name="spread" class='inputField spread' type='number' required placeholder="px"/>
-    <label for="hexColor">Hex Color</label>&nbsp;
-    <input id="hexColor" name="hexColor" class='inputField hex-color' type='text' required/>
+    <div class="row">
+  <div class="span12">
+    <div class="col-xs-3">
+    <label for="inset">Inset:</label>
+    <input id="inset" class='inset' type='checkbox'>
+    </div>
+    <div class="col-xs-3">
+    <label for="horizontal">H Length</label>
+    <input id="horizontal" name="horizontal" class='form-control inputField horizontal-length' type='number' required placeholder="px"/>
+    </div>
+    <div class="col-xs-3">
+    <label for="vertical">V Length</label>
+    <input id="vertical" name="vertical" class='form-control inputField vertical-length' type='number' required placeholder="px"/>
+    </div>
+    <div class="col-xs-3">
+    <label for="blur">Blur Radius</label>
+    <input id="blur" name="blur" class='form-control inputField blur-radius' type='number' required placeholder="px"/>
+    </div>
+      </div>
+        </div>
+    <div class="row">
+        <div class="span6">
+    <div class="col-xs-3">
+    <label for="spread">Spread</label>
+    <input id="spread" name="spread" class='form-control inputField spread' type='number' required placeholder="px"/>
+    </div>
+    <div class="col-xs-3">
+    <label for="hexColor">Hex Color</label>
+    <input id="hexColor" name="hexColor" class='form-control inputField hex-color' type='text' required/>
+    </div>
+            </div>
+    </div>
+
     <textarea id='txtarea' rows='10' cols='50' disabled></textarea>
-    <button type='submit' class='btn btn-default generate'>GO</button>
+    <button type='submit' class='btn btn-success btn-block generate'>GENERATE</button>
 </form>
+<script>
+$(':checkbox').checkboxpicker();    
+</script>
