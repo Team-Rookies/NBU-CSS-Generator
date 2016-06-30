@@ -1,0 +1,232 @@
+/*До тук съм имплементирал Rect и Circle като искат леко доопипване, по същия начин трябва да стане и line, трябва да се направи един масив от Shape във класа File, ако не стане 
+може да се направят масиви за всяка фигура и така да се държат. Ще оставя обяснения из кода, където и аз рабирам какво съм правил :D :D :D <3 */
+
+#include <iostream>
+#include <fstream>
+#include <ostream>
+
+using namespace std;
+
+class Shape {
+public:
+	virtual void translate(int x, int y) = 0;
+	virtual void show() = 0; //принтва обекта
+};
+
+class Rect : public Shape {
+private:
+	int x;
+	int y;
+	int width;
+	int height;
+	int rx;
+	int ry;
+	char* fill;
+	char* stroke;
+
+public:
+	Rect() {
+		this->x = 0;
+		this->y = 0;
+		this->width = 0;
+		this->rx = 0;
+		this->ry = 0;
+		this->fill = "none";
+		this->stroke = "none";
+	}
+
+	Rect(int x, int y, int width, int height, int rx, int ry, char* fill) {
+		this->x = x;
+		this->y = y;
+		this->width = width;
+		this->height = height;
+		this->rx = rx;
+		this->ry = ry;
+		this->fill = fill;
+		this->stroke = stroke;
+	}
+
+	Rect(int x, int y, int width, int height, char* fill) {
+		this->x = x;
+		this->y = y;
+		this->width = width;
+		this->height = height;
+		this->fill = fill;
+	}
+	void translate(int x, int y) {
+		this->x += x;
+		this->y += y;
+	}
+
+	void show() {
+		cout << "rectangle x=" << x << " y=" << y << " width=" << width << " height=" << height << " fill=" << fill;
+	}
+
+
+};
+
+class Circle : public Shape {
+private:
+	int cx, cy, r;
+	char* fill;
+public:
+	Circle(int cx, int cy, int r, char* fill) {
+		this->cx = cx;
+		this->cy = cy;
+		this->r = r;
+		this->fill = fill;
+	}
+
+	void translate(int x, int y) {
+		cout << "ok";
+	}
+	void show() {
+		cout << "Circle cx=" << cx << " cy=" << cy << " r=" << r << " fill=" << fill;
+	}
+};
+
+class File {
+private:
+	fstream file;
+	char* fileName;
+	char* header;
+	char* fileContent;
+	char* openSVG = new char[5];
+	int cntShapes;
+	int fsize;
+	int shapeStartIndex;
+public:
+	void readFile();
+	void getHeader();
+	void getShapes();
+
+};
+
+void File::readFile() {  //прочита целия файл в променливата fileContent щото от там взимам header-a ако искаш можеш да я преправиш с потоци ще стане по-добре
+	file.open("gosho.svg");
+	unsigned long int size = 0;
+	file.seekg(0, ios::end);
+	size = file.tellg();
+	fsize = size;
+	file.seekg(0, ios::beg);
+	fileContent = new char[size + 1];
+	file.read(fileContent, size);
+	file.close();
+	cout << endl << fileContent << endl;
+}
+
+void File::getHeader() { //взима хедъъра т.е. до всичко до тага <svg> което не следва да се променя
+	int i = 0;
+	char* bufHeader = new char[fsize];
+	while ((fileContent[i] != '<') || (fileContent[i + 1] != 's') || (fileContent[i + 2] != 'v') || (fileContent[i + 3] != 'g') || (fileContent[i + 4] != '>'))
+	{
+		bufHeader[i] = fileContent[i];
+		i++;
+	}
+	header = new char[i];
+	int a = 0;
+	while (a <= i) {
+		header[a] = bufHeader[a];
+		a++;
+	}
+	shapeStartIndex = i + 5;
+}
+
+void File::getShapes() { // най-дебелата работа, докато чете файла създава обекти и ги парсва фигурите от файла в обектите
+	int x, y, weight, height, xy, cy, r, i = 0, foundShapes = 0;
+	char* fill = new char[20];
+	char* name = new char[10];
+	char* buff = new char[50];
+	char* valueName = new char[10];
+	bool flag = true;
+	char t;
+	Rect* rec;
+	Circle* c;
+	file.open("gosho.svg");//файла който четем
+	file.seekg(shapeStartIndex, std::ios::beg);//сочим къде започват фигурите, тази променлива shapeStartIndex я имаме от горната функция
+	file >> openSVG;//запазваме си отварящия таг
+	file >> t;//запазваме отварящата кавичка на първата фигура
+	file >> name;//името на фигурата rect/circle
+
+	while (strcmp(name, "/svg>")) //проверява дали не е дошъл края на файла
+	{
+		flag = true;
+	while (strcmp(buff,"/>") || flag) {// проверява дали не е дошъл края на фигурата
+		file >> buff;//четем текъщото
+		char* tmp = new char[10];
+		int i = 0;
+		int valueSize = 0;
+		int valueNameSize = 0;
+		int valuePos = 0;
+
+		while (buff[i] != '"') {// с това тук взимаме колко голямо ще е името на пропъртито x = 1 xc = 2 fill = 4 и така
+			i++;
+			valueNameSize++;
+		}
+		valuePos = i + 1;
+		i++;
+		while (buff[i] != '"') { //това гледа колко е голямо числото, дали 1, 2 или 3 цифрено
+			valueSize++;
+			i++;
+		}
+		memcpy(valueName, buff, valueNameSize);
+		valueName[valueNameSize-1] = '\0';//с тези 4 реда прочитаме името на пропъртито и стойността му
+		memcpy(tmp,&buff[valuePos],valueSize );
+		tmp[valueSize] = '\0';
+		
+
+		if (strcmp(valueName, "x")==0) {//с тези ифове проверяваме какво сме прочели и го записваме в променлива, всички променливи са декларирани по-горе, ако е нужно парсваме
+			x = atoi(tmp);				//парсваме, ако не запазваме просто в char*
+		}
+		else if (strcmp(valueName, "y")==0) {
+			y = atoi(tmp);
+		}
+		else if (strcmp(valueName, "width")==0) {
+			weight = atoi(tmp);
+		}
+		else if (strcmp(valueName, "height")==0) {
+			height = atoi(tmp);
+		}
+		else if (strcmp(valueName, "fill")==0) {
+			fill = tmp;
+		}
+		else if (strcmp(valueName, "cx") == 0) {
+			xy = atoi(tmp);
+		}
+		else if (strcmp(valueName, "cy") == 0) {
+			cy = atoi(tmp);
+		}
+		else if (strcmp(valueName, "r") == 0) {
+			r = atoi(tmp);
+		}
+		flag = false;
+	}
+	
+	if (strcmp(name, "rect")==0) {//проверяваме каква фигура сме прочели и създаваме такъв обект(използваме конструктурите класа
+		rec = new Rect(x, y, weight, height, fill); //тука е малко кофти, аз съм го направил да работи с фигурите от примера, но принципно може да има и повече пропъртита
+		cout << endl;				//това естествено не е описано в условието 
+		rec->show();
+		foundShapes++;
+	}
+	if (strcmp(name, "circle") == 0) {
+		c = new Circle(xy, cy, r, fill);
+		cout << endl;
+		c->show();
+		foundShapes++;
+	}
+	cout << endl;
+	file >> t;
+	file >> name;
+	}
+}
+
+
+
+int main() { //общо взето остава да се направи още една фигура по избор, примерно line
+	File f;  //да се направи един масив Shapes или ако не става 3 масива за фигурите във класа file
+	f.readFile(); // и вече функционалностите лесно ще се покрият
+	f.getHeader();
+	f.getShapes();
+
+	return 0;
+}
